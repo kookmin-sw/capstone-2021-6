@@ -40,6 +40,9 @@
     <Filter Include="Thirdparty\stb_image">
       <UniqueIdentifier>{c46882ee-a68a-4cf0-8e85-15a7abb481df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{ddf82474-e2bb-4bf2-bb50-91bf68e4ac2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Sources\main.cpp">
