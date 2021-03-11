@@ -1,0 +1,47 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Executables
+*.exe
+*.out
+*.app
+*.db
+*.opendb
+*.ipch
+*.tlog
+*.idb
+Projects/.vs/Renderer/v16/.suo
+*.pdb
+*.log
+*.recipe
+Builds/Intermediate/x64/Debug/Renderer.vcxproj.FileListAbsolute.txt
+Builds/Intermediate/x64/Release/Renderer.vcxproj.FileListAbsolute.txt
+*.ilk
+*.iobj
+*.ipdb
+*.db-shm
+*.db-wal
