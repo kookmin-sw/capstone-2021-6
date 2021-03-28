@@ -12,6 +12,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Sources\main.cpp" />
+    <ClCompile Include="..\Sources\Rendering\Application.cpp" />
+    <ClCompile Include="..\Sources\Rendering\Camera.cpp" />
+    <ClCompile Include="..\Sources\Rendering\Mesh.cpp" />
+    <ClCompile Include="..\Sources\Rendering\Model.cpp" />
+    <ClCompile Include="..\Sources\Rendering\Renderer.cpp" />
+    <ClCompile Include="..\Sources\Rendering\Shader.cpp" />
     <ClCompile Include="..\Thirdparty\gl3w\includes\GL\gl3w.c" />
     <ClCompile Include="..\Thirdparty\glm\includes\glm\detail\glm.cpp" />
     <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui.cpp" />
@@ -23,6 +29,12 @@
     <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Sources\Rendering\Application.h" />
+    <ClInclude Include="..\Sources\Rendering\Camera.h" />
+    <ClInclude Include="..\Sources\Rendering\Mesh.h" />
+    <ClInclude Include="..\Sources\Rendering\Model.h" />
+    <ClInclude Include="..\Sources\Rendering\Renderer.h" />
+    <ClInclude Include="..\Sources\Rendering\Shader.h" />
     <ClInclude Include="..\Thirdparty\gl3w\includes\GL\gl3w.h" />
     <ClInclude Include="..\Thirdparty\gl3w\includes\GL\glcorearb.h" />
     <ClInclude Include="..\Thirdparty\gl3w\includes\KHR\khrplatform.h" />
@@ -186,6 +198,17 @@
     <ClInclude Include="D:\Developement\Thirparty\glfw\includes\GLFW\glfw3native.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Resources\Shaders\Background.fs" />
+    <None Include="..\Resources\Shaders\Background.vs" />
+    <None Include="..\Resources\Shaders\EnvironmentMap.fs" />
+    <None Include="..\Resources\Shaders\EnvironmentMap.vs" />
+    <None Include="..\Resources\Shaders\GeometryPass.fs" />
+    <None Include="..\Resources\Shaders\GeometryPass.vs" />
+    <None Include="..\Resources\Shaders\LightPass.fs" />
+    <None Include="..\Resources\Shaders\LightPass.vs" />
+    <None Include="..\Resources\Shaders\ShadowMapping.fs" />
+    <None Include="..\Resources\Shaders\ShadowMapping.gs" />
+    <None Include="..\Resources\Shaders\ShadowMapping.vs" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_common.inl" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_common_simd.inl" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_exponential.inl" />
@@ -352,7 +375,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Thirdparty\gl3w\includes;$(SolutionDir)..\Thirdparty\glfw\includes;$(SolutionDir)..\Thirdparty\glm\includes;$(SolutionDir)..\Thirdparty\imgui\includes;$(SolutionDir)..\Thirdparty\json\includes;$(SolutionDir)..\Thirdparty\stb_image\includes;$(SolutionDir)..\Thirdparty\tinygltf\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Thirdparty\tinyobj\includes;$(SolutionDir)..\Thirdparty\gl3w\includes;$(SolutionDir)..\Thirdparty\glfw\includes;$(SolutionDir)..\Thirdparty\glm\includes;$(SolutionDir)..\Thirdparty\imgui\includes;$(SolutionDir)..\Thirdparty\json\includes;$(SolutionDir)..\Thirdparty\stb_image\includes;$(SolutionDir)..\Thirdparty\tinygltf\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
@@ -360,6 +383,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\Thirdparty\glfw\libs</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

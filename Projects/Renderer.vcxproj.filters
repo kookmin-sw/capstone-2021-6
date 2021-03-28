@@ -75,6 +75,24 @@
     <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui_widgets.cpp">
       <Filter>Thirdparty\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="..\Sources\Rendering\Camera.cpp">
+      <Filter>Sources\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Rendering\Renderer.cpp">
+      <Filter>Sources\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Rendering\Shader.cpp">
+      <Filter>Sources\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Rendering\Mesh.cpp">
+      <Filter>Sources\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Rendering\Model.cpp">
+      <Filter>Sources\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Rendering\Application.cpp">
+      <Filter>Sources\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Thirdparty\gl3w\includes\GL\gl3w.h">
@@ -560,6 +578,24 @@
     <ClInclude Include="D:\Developement\Thirparty\glfw\includes\GLFW\glfw3native.h">
       <Filter>Thirdparty\glfw</Filter>
     </ClInclude>
+    <ClInclude Include="..\Sources\Rendering\Camera.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Rendering\Renderer.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Rendering\Shader.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Rendering\Mesh.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Rendering\Model.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Rendering\Application.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_common.inl">
@@ -894,6 +930,39 @@
     </None>
     <None Include="..\Thirdparty\glm\includes\glm\gtx\wrap.inl">
       <Filter>Thirdparty\glm</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\Background.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\Background.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\EnvironmentMap.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\EnvironmentMap.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\GeometryPass.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\GeometryPass.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\LightPass.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\LightPass.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\ShadowMapping.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\ShadowMapping.gs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\ShadowMapping.vs">
+      <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
 </Project>
