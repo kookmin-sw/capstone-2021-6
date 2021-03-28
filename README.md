@@ -18,7 +18,7 @@
   - Theme Chooser에서 태마선택
   - 수정후 팀페이지 확인하여 점검.
 
-**팀페이지 주소** -> https://kookmin-sw.github.io/ '{{자신의 리파지토리 아이디}}'
+**팀페이지 주소** -> https://kookmin-sw.github.io/capstone-2021-6
 
 **예시)** 2020년 0조  https://kookmin-sw.github.io/capstone-2020-0/
 
