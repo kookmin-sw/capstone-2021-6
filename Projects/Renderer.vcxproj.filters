@@ -931,18 +931,6 @@
     <None Include="..\Thirdparty\glm\includes\glm\gtx\wrap.inl">
       <Filter>Thirdparty\glm</Filter>
     </None>
-    <None Include="..\Resources\Shaders\Background.fs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="..\Resources\Shaders\Background.vs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="..\Resources\Shaders\EnvironmentMap.fs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="..\Resources\Shaders\EnvironmentMap.vs">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="..\Resources\Shaders\GeometryPass.fs">
       <Filter>Shaders</Filter>
     </None>
@@ -953,15 +941,6 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="..\Resources\Shaders\LightPass.vs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="..\Resources\Shaders\ShadowMapping.fs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="..\Resources\Shaders\ShadowMapping.gs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="..\Resources\Shaders\ShadowMapping.vs">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

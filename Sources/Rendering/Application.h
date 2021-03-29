@@ -17,6 +17,6 @@ private:
 
 	Renderer* m_renderer;
 
-	unsigned int m_wWidth;
-	unsigned int m_wHeight;
+	unsigned int m_winWidth;
+	unsigned int m_winHeight;
 };

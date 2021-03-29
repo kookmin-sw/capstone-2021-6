@@ -198,17 +198,10 @@
     <ClInclude Include="D:\Developement\Thirparty\glfw\includes\GLFW\glfw3native.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Resources\Shaders\Background.fs" />
-    <None Include="..\Resources\Shaders\Background.vs" />
-    <None Include="..\Resources\Shaders\EnvironmentMap.fs" />
-    <None Include="..\Resources\Shaders\EnvironmentMap.vs" />
     <None Include="..\Resources\Shaders\GeometryPass.fs" />
     <None Include="..\Resources\Shaders\GeometryPass.vs" />
     <None Include="..\Resources\Shaders\LightPass.fs" />
     <None Include="..\Resources\Shaders\LightPass.vs" />
-    <None Include="..\Resources\Shaders\ShadowMapping.fs" />
-    <None Include="..\Resources\Shaders\ShadowMapping.gs" />
-    <None Include="..\Resources\Shaders\ShadowMapping.vs" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_common.inl" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_common_simd.inl" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_exponential.inl" />
