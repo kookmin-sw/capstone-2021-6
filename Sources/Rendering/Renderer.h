@@ -11,7 +11,7 @@ class Renderer
 public:
     Renderer();
 
-    int main();
+	void StartRenderer(unsigned int width, unsigned int height);
 
     void DeferredRendering();
 

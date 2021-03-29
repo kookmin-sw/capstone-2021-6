@@ -1,5 +1,5 @@
 #version 450 core
-out vec4 FragPos;
+out vec4 FragColor;
 
 in vec2 TexCoords;
 
@@ -23,7 +23,7 @@ void main()
     vec3 FragPos = texture(posData, TexCoords).rgb;
     vec3 Normal = texture(normalData, TexCoords).rgb;
     vec3 Diffuse = texture(albedoData, TexCoords).rgb;
-    float Specular = texture(albedoData, TexCoords).abs;
+    float Specular = texture(albedoData, TexCoords).a;
 
     vec3 lighting = Diffuse * 0.1;
     vec3 viewDir = normalize(viewPos - FragPos);
@@ -41,5 +41,5 @@ void main()
     specular *= attenuation;
     lighting += diffuse + specular;
 
-    FragColor = vec4(lighing, 1.0);
+    FragColor = vec4(lighting, 1.0);
 }
