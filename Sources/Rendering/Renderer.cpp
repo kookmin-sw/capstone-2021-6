@@ -44,17 +44,11 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_lightShader->SetInt("posData", 0);
 	m_lightShader->SetInt("normalData", 1);
 	m_lightShader->SetInt("albedoData", 2);
+	m_lightShader->SetFloat("ao", 1.0f);
 
-	srand(13);
-	float xPos = ((rand() % 100) / 100.0) * 6.0 - 3.0;
-	float yPos = ((rand() % 100) / 100.0) * 6.0 - 4.0;
-	float zPos = ((rand() % 100) / 100.0) * 6.0 - 5.0;
-	m_lightPos = glm::vec3(xPos, yPos, zPos);
+	m_lightPos = glm::vec3(0.5f, 0.5f, 0.5f);
 
-	float rColor = ((rand() % 100) / 200.0f) + 0.5;
-	float gColor = ((rand() % 100) / 200.0f) + 0.5;
-	float bColor = ((rand() % 100) / 200.0f) + 0.5;
-	m_lightColor = glm::vec3(rColor, gColor, bColor);
+	m_lightColor = glm::vec3(300.0f, 300.0f, 300.0f);
 
 	float quadVertices[] = {
 		-1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
@@ -124,6 +118,7 @@ void Renderer::DeferredRendering()
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, m_gBuffer);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glm::mat4 projection = glm::perspective(glm::radians(m_camera->m_ZOOM), (float)m_winWidth / (float)m_winHeight, 0.1f, 100.0f);
 	glm::mat4 view = m_camera->GetViewMatrix();
@@ -135,6 +130,7 @@ void Renderer::DeferredRendering()
 	m_mainModel->Draw(*m_geometryShader);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	m_lightShader->UseProgram();
 	glActiveTexture(GL_TEXTURE0);
@@ -144,9 +140,14 @@ void Renderer::DeferredRendering()
 	glActiveTexture(GL_TEXTURE2);
 	glBindTexture(GL_TEXTURE_2D, m_albedoData);
 
+	m_lightShader->SetMat4("projMatrix", projection);
+	m_lightShader->SetMat4("viewMatrix", view);
+	m_lightShader->SetMat4("modelMatrix", model);
+	m_lightShader->SetFloat("metallic", 0.4f);
+	m_lightShader->SetFloat("roughness", 0.4f);
 	m_lightShader->SetVec3("light.Position", m_lightPos);
 	m_lightShader->SetVec3("light.Color", m_lightColor);
-	m_lightShader->SetVec3("viewPos", m_camera->GetPos());
+	m_lightShader->SetVec3("camPos", m_camera->GetPos());
 
 	glBindVertexArray(m_quadVAO);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
