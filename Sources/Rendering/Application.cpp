@@ -61,6 +61,7 @@ int Application::Run()
 		deltaTime = currentFrameTime - lastFrameTime;
 		lastFrameTime = currentFrameTime;
 
+		// Show FPS
 		if ((currentFrameTime - fpsTimeCounter) >= 1.0) 
 		{
 			double actualElapsedTime = (currentFrameTime - fpsTimeCounter);
@@ -90,6 +91,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
+// TODO : Set Camera Mode and ETC
 void processInput(GLFWwindow* window)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)

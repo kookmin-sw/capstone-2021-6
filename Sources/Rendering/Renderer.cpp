@@ -32,6 +32,7 @@ Renderer::Renderer() :
 {
 }
 
+// Set up Framebuffer object, Shader, Main Object and Screen Fill Quad
 void Renderer::StartRenderer(unsigned int width, unsigned int height)
 {
 	m_winWidth = width;
@@ -133,6 +134,7 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	glEnable(GL_DEPTH_TEST);
 }
 
+// Main Rendering Part
 void Renderer::DeferredRendering()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
