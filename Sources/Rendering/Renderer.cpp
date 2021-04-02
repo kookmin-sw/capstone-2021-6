@@ -34,7 +34,7 @@ Renderer::Renderer() :
 
 void Renderer::StartRenderer(unsigned int width, unsigned int height)
 {
-	m_winHeight = width;
+	m_winWidth = width;
 	m_winHeight = height;
 
 	m_geometryShader = new Shader("../Resources/Shaders/GeometryPass.vs", "../Resources/Shaders/GeometryPass.fs");
@@ -110,11 +110,11 @@ void Renderer::DeferredRendering()
 	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, m_winWidth, m_winHeight);
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_depth);
 
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+	auto fboStatus = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+	if (fboStatus != GL_FRAMEBUFFER_COMPLETE)
 	{
-		std::cout << "Framebuffer not complete!" << std::endl;
+		std::cout << "Framebuffer not complete: " << fboStatus << std::endl;
 	}
-
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, m_gBuffer);

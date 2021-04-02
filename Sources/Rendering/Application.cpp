@@ -42,19 +42,24 @@ int Application::Run()
 		return -1;
 	}
 
+	glEnable(GL_DEPTH_TEST);
+
 	m_renderer = new Renderer();
 	m_renderer->StartRenderer(m_winWidth, m_winHeight);
 
-	float deltaTime = 0.0f;
-	float lastFrame = 0.0f;
+	double deltaTime = 0.0f;
+	double lastFrame = 0.0f;
 
 	while (!glfwWindowShouldClose(m_window))
 	{
-		float currentFrame = glfwGetTime();
+		double currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
 		processInput(m_window);
+
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		m_renderer->DeferredRendering();
 
