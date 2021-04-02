@@ -22,6 +22,7 @@ Renderer::Renderer() :
 
 	m_lightPos(0),
 	m_lightColor(0),
+	m_objPos(0),
 
 	m_geometryShader(nullptr),
 	m_lightShader(nullptr),
@@ -82,37 +83,24 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 
 	m_camera = new Camera(glm::vec3(0.0f, 0.0f, 5.0f));
 	m_mainModel = new Model("../Resources/resources/objects/backpack/backpack.obj");
-
-	m_objPos.push_back(glm::vec3(-3.0, -0.5, -3.0));
-	m_objPos.push_back(glm::vec3(0.0, -0.5, -3.0));
-	m_objPos.push_back(glm::vec3(3.0, -0.5, -3.0));
-	m_objPos.push_back(glm::vec3(-3.0, -0.5, 0.0));
-	m_objPos.push_back(glm::vec3(0.0, -0.5, 0.0));
-	m_objPos.push_back(glm::vec3(3.0, -0.5, 0.0));
-	m_objPos.push_back(glm::vec3(-3.0, -0.5, 3.0));
-	m_objPos.push_back(glm::vec3(0.0, -0.5, 3.0));
-	m_objPos.push_back(glm::vec3(3.0, -0.5, 3.0));
 	
 	m_lightShader->UseProgram();
 	m_lightShader->SetInt("posData", 0);
 	m_lightShader->SetInt("normalData", 1);
 	m_lightShader->SetInt("albedoData", 2);
+	m_lightShader->SetFloat("ao", 1.0f);
 
-	const unsigned int NR_LIGHTS = 32;
-	srand(13);
-	for (unsigned int i = 0; i < NR_LIGHTS; i++)
-	{
-		// calculate slightly random offsets
-		float xPos = ((rand() % 100) / 100.0) * 6.0 - 3.0;
-		float yPos = ((rand() % 100) / 100.0) * 6.0 - 4.0;
-		float zPos = ((rand() % 100) / 100.0) * 6.0 - 3.0;
-		m_lightPos.push_back(glm::vec3(xPos, yPos, zPos));
-		// also calculate random color
-		float rColor = ((rand() % 100) / 200.0f) + 0.5; // between 0.5 and 1.0
-		float gColor = ((rand() % 100) / 200.0f) + 0.5; // between 0.5 and 1.0
-		float bColor = ((rand() % 100) / 200.0f) + 0.5; // between 0.5 and 1.0
-		m_lightColor.push_back(glm::vec3(rColor, gColor, bColor));
-	}
+	glm::vec3 objPos = glm::vec3(0.0f, 0.0f, 0.0f);
+
+	m_lightPos.push_back(glm::vec3(-10.0f, 10.0f, 10.0f));
+	m_lightPos.push_back(glm::vec3(10.0f, 10.0f, 10.0f));
+	m_lightPos.push_back(glm::vec3(-10.0f, -10.0f, 10.0f));
+	m_lightPos.push_back(glm::vec3(10.0f, -10.0f, 10.0f));
+
+	m_lightColor.push_back(glm::vec3(300.0f, 300.0f, 300.0f));
+	m_lightColor.push_back(glm::vec3(300.0f, 300.0f, 300.0f));
+	m_lightColor.push_back(glm::vec3(300.0f, 300.0f, 300.0f));
+	m_lightColor.push_back(glm::vec3(300.0f, 300.0f, 300.0f));
 
 	float quadVertices[] = {
 		-1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
@@ -149,14 +137,12 @@ void Renderer::DeferredRendering()
 	m_geometryShader->SetMat4("projMatrix", projection);
 	m_geometryShader->SetMat4("viewMatrix", view);
 
-	for (unsigned int i = 0; i < m_objPos.size(); i++)
-	{
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, m_objPos[i]);
-		model = glm::scale(model, glm::vec3(0.5f));
-		m_geometryShader->SetMat4("modelMatrix", model);
-		m_mainModel->Draw(*m_geometryShader);
-	}
+	model = glm::mat4(1.0f);
+	model = glm::translate(model, m_objPos);
+	model = glm::scale(model, glm::vec3(0.5f));
+	m_geometryShader->SetMat4("modelMatrix", model);
+	m_mainModel->Draw(*m_geometryShader);
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -168,20 +154,22 @@ void Renderer::DeferredRendering()
 	glActiveTexture(GL_TEXTURE2);
 	glBindTexture(GL_TEXTURE_2D, m_albedoData);
 
-	for (unsigned int i = 0; i < m_lightPos.size(); i++)
-	{
-		m_lightShader->SetVec3("light[" + std::to_string(i) + "].Position", m_lightPos[i]);
-		m_lightShader->SetVec3("light[" + std::to_string(i) + "].Color", m_lightColor[i]);
-
-		const float linear = 0.7;
-		const float quadratic = 1.8;
-		m_lightShader->SetFloat("light[" + std::to_string(i) + "].Linear", linear);
-		m_lightShader->SetFloat("light[" + std::to_string(i) + "].Quadratic", quadratic);
-	}
-
-	m_lightShader->SetVec3("viewPos", m_camera->GetPos());
+	m_lightShader->SetVec3("camPos", m_camera->GetPos());
+	m_lightShader->SetFloat("metallic", 0.4f);
+	m_lightShader->SetFloat("roughness", 0.4f);
 
 	glBindVertexArray(m_quadVAO);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	glBindVertexArray(0);
+
+	for (unsigned int i = 0; i < m_lightPos.size(); i++)
+	{
+
+		m_lightShader->SetVec3("light[" + std::to_string(i) + "].Position", m_lightPos[i]);
+		m_lightShader->SetVec3("light[" + std::to_string(i) + "].Color", m_lightColor[i]);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, m_lightPos[i]);
+		model = glm::scale(model, glm::vec3(0.5f));
+	}
 }
