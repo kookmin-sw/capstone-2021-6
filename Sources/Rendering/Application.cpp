@@ -9,6 +9,11 @@
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
+float deltaTime = 0.0f;
+float lastFrameTime = 0.0f;
+int frameCounter = 0;
+double fpsTimeCounter = glfwGetTime();
+
 Application::Application(const std::string& title, unsigned int width, unsigned int height) :
 	m_title(title),
 	m_renderer(nullptr),
@@ -47,14 +52,24 @@ int Application::Run()
 	m_renderer = new Renderer();
 	m_renderer->StartRenderer(m_winWidth, m_winHeight);
 
-	double deltaTime = 0.0f;
-	double lastFrame = 0.0f;
-
 	while (!glfwWindowShouldClose(m_window))
 	{
-		double currentFrame = glfwGetTime();
-		deltaTime = currentFrame - lastFrame;
-		lastFrame = currentFrame;
+		++frameCounter;
+
+		float currentFrameTime = glfwGetTime();
+		
+		deltaTime = currentFrameTime - lastFrameTime;
+		lastFrameTime = currentFrameTime;
+
+		if ((currentFrameTime - fpsTimeCounter) >= 1.0) 
+		{
+			double actualElapsedTime = (currentFrameTime - fpsTimeCounter);
+
+			std::cout << "mSPF: " << ((actualElapsedTime * 1000) / (double)frameCounter) << " FPS: " << ((double)frameCounter / actualElapsedTime) << std::endl;
+
+			frameCounter = 0;
+			fpsTimeCounter += actualElapsedTime;
+		}
 
 		processInput(m_window);
 

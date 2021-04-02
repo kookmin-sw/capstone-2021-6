@@ -37,47 +37,6 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_winWidth = width;
 	m_winHeight = height;
 
-	m_geometryShader = new Shader("../Resources/Shaders/GeometryPass.vs", "../Resources/Shaders/GeometryPass.fs");
-	m_lightShader = new Shader("../Resources/Shaders/LightPass.vs", "../Resources/Shaders/LightPass.fs");
-	
-	m_lightShader->UseProgram();
-	m_lightShader->SetInt("posData", 0);
-	m_lightShader->SetInt("normalData", 1);
-	m_lightShader->SetInt("albedoData", 2);
-	m_lightShader->SetFloat("ao", 1.0f);
-
-	m_lightPos = glm::vec3(0.5f, 0.5f, 0.5f);
-
-	m_lightColor = glm::vec3(300.0f, 300.0f, 300.0f);
-
-	float quadVertices[] = {
-		-1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
-		-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
-		 1.0f,  1.0f, 0.0f, 1.0f, 1.0f,
-		 1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
-	};
-
-	glGenVertexArrays(1, &m_quadVAO);
-	glGenBuffers(1, &m_quadVBO);
-	glBindVertexArray(m_quadVAO);
-	glBindBuffer(GL_ARRAY_BUFFER, m_quadVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-
-	glEnable(GL_DEPTH_TEST);
-}
-
-void Renderer::DeferredRendering()
-{
-	m_camera = new Camera(glm::vec3(0.0f, 0.0f, 5.0f));
-	m_mainModel = new Model("../Resources/resources/objects/backpack/backpack.obj");
-
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	glGenFramebuffers(1, &m_gBuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, m_gBuffer);
 
@@ -117,8 +76,69 @@ void Renderer::DeferredRendering()
 	}
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, m_gBuffer);
+	m_geometryShader = new Shader("../Resources/Shaders/GeometryPass.vs", "../Resources/Shaders/GeometryPass.fs");
+	m_lightShader = new Shader("../Resources/Shaders/LightPass.vs", "../Resources/Shaders/LightPass.fs");
+
+	m_camera = new Camera(glm::vec3(0.0f, 0.0f, 5.0f));
+	m_mainModel = new Model("../Resources/resources/objects/backpack/backpack.obj");
+
+	m_objPos.push_back(glm::vec3(-3.0, -0.5, -3.0));
+	m_objPos.push_back(glm::vec3(0.0, -0.5, -3.0));
+	m_objPos.push_back(glm::vec3(3.0, -0.5, -3.0));
+	m_objPos.push_back(glm::vec3(-3.0, -0.5, 0.0));
+	m_objPos.push_back(glm::vec3(0.0, -0.5, 0.0));
+	m_objPos.push_back(glm::vec3(3.0, -0.5, 0.0));
+	m_objPos.push_back(glm::vec3(-3.0, -0.5, 3.0));
+	m_objPos.push_back(glm::vec3(0.0, -0.5, 3.0));
+	m_objPos.push_back(glm::vec3(3.0, -0.5, 3.0));
+	
+	m_lightShader->UseProgram();
+	m_lightShader->SetInt("posData", 0);
+	m_lightShader->SetInt("normalData", 1);
+	m_lightShader->SetInt("albedoData", 2);
+
+	const unsigned int NR_LIGHTS = 32;
+	srand(13);
+	for (unsigned int i = 0; i < NR_LIGHTS; i++)
+	{
+		// calculate slightly random offsets
+		float xPos = ((rand() % 100) / 100.0) * 6.0 - 3.0;
+		float yPos = ((rand() % 100) / 100.0) * 6.0 - 4.0;
+		float zPos = ((rand() % 100) / 100.0) * 6.0 - 3.0;
+		m_lightPos.push_back(glm::vec3(xPos, yPos, zPos));
+		// also calculate random color
+		float rColor = ((rand() % 100) / 200.0f) + 0.5; // between 0.5 and 1.0
+		float gColor = ((rand() % 100) / 200.0f) + 0.5; // between 0.5 and 1.0
+		float bColor = ((rand() % 100) / 200.0f) + 0.5; // between 0.5 and 1.0
+		m_lightColor.push_back(glm::vec3(rColor, gColor, bColor));
+	}
+
+	float quadVertices[] = {
+		-1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
+		-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+		 1.0f,  1.0f, 0.0f, 1.0f, 1.0f,
+		 1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+	};
+
+	glGenVertexArrays(1, &m_quadVAO);
+	glGenBuffers(1, &m_quadVBO);
+	glBindVertexArray(m_quadVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, m_quadVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+
+	glEnable(GL_DEPTH_TEST);
+}
+
+void Renderer::DeferredRendering()
+{
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, m_gBuffer);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glm::mat4 projection = glm::perspective(glm::radians(m_camera->m_ZOOM), (float)m_winWidth / (float)m_winHeight, 0.1f, 100.0f);
 	glm::mat4 view = m_camera->GetViewMatrix();
@@ -126,11 +146,17 @@ void Renderer::DeferredRendering()
 	m_geometryShader->UseProgram();
 	m_geometryShader->SetMat4("projMatrix", projection);
 	m_geometryShader->SetMat4("viewMatrix", view);
-	m_geometryShader->SetMat4("modelMatrix", model);
-	m_mainModel->Draw(*m_geometryShader);
+
+	for (unsigned int i = 0; i < m_objPos.size(); i++)
+	{
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, m_objPos[i]);
+		model = glm::scale(model, glm::vec3(0.5f));
+		m_geometryShader->SetMat4("modelMatrix", model);
+		m_mainModel->Draw(*m_geometryShader);
+	}
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	m_lightShader->UseProgram();
 	glActiveTexture(GL_TEXTURE0);
@@ -140,14 +166,18 @@ void Renderer::DeferredRendering()
 	glActiveTexture(GL_TEXTURE2);
 	glBindTexture(GL_TEXTURE_2D, m_albedoData);
 
-	m_lightShader->SetMat4("projMatrix", projection);
-	m_lightShader->SetMat4("viewMatrix", view);
-	m_lightShader->SetMat4("modelMatrix", model);
-	m_lightShader->SetFloat("metallic", 0.4f);
-	m_lightShader->SetFloat("roughness", 0.4f);
-	m_lightShader->SetVec3("light.Position", m_lightPos);
-	m_lightShader->SetVec3("light.Color", m_lightColor);
-	m_lightShader->SetVec3("camPos", m_camera->GetPos());
+	for (unsigned int i = 0; i < m_lightPos.size(); i++)
+	{
+		m_lightShader->SetVec3("light[" + std::to_string(i) + "].Position", m_lightPos[i]);
+		m_lightShader->SetVec3("light[" + std::to_string(i) + "].Color", m_lightColor[i]);
+
+		const float linear = 0.7;
+		const float quadratic = 1.8;
+		m_lightShader->SetFloat("light[" + std::to_string(i) + "].Linear", linear);
+		m_lightShader->SetFloat("light[" + std::to_string(i) + "].Quadratic", quadratic);
+	}
+
+	m_lightShader->SetVec3("viewPos", m_camera->GetPos());
 
 	glBindVertexArray(m_quadVAO);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);

@@ -28,8 +28,9 @@ private:
 	unsigned int m_albedoData;
 	unsigned int m_depth;
 
-	glm::vec3 m_lightPos;
-	glm::vec3 m_lightColor;
+	std::vector<glm::vec3> m_lightPos;
+	std::vector<glm::vec3> m_lightColor;
+	std::vector<glm::vec3> m_objPos;
 
 	Shader* m_geometryShader;
 	Shader* m_lightShader;
