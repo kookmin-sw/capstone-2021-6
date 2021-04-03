@@ -27,7 +27,7 @@
 
 Student ID : 20151769
 E-Mail : sangjjang96@kookmin.ac.kr
-Role : 
+Role : 팀장, 프레임워크 개발
 Github :  [@sangjjang96](https://github.com/sangjjang96)
 ```
 
@@ -36,7 +36,7 @@ Github :  [@sangjjang96](https://github.com/sangjjang96)
 
 Student ID : 20171647
 E-Mail : yangkyowon@kookmin.ac.kr
-Role : 
+Role : 팀원, 알고리즘 연구 및 
 Github : [@SeolYang](https://github.com/SeolYang)
 ```
 ### 4. 사용법
