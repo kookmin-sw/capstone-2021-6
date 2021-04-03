@@ -36,7 +36,7 @@ Github :  [@sangjjang96](https://github.com/sangjjang96)
 
 Student ID : 20171647
 E-Mail : yangkyowon@kookmin.ac.kr
-Role : 팀원, 알고리즘 연구 및 
+Role : 팀원, 알고리즘 연구 및 개발
 Github : [@SeolYang](https://github.com/SeolYang)
 ```
 ### 4. 사용법
