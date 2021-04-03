@@ -28,7 +28,7 @@
 Student ID : 20151769
 E-Mail : sangjjang96@kookmin.ac.kr
 Role : 팀장, 프레임워크 개발
-Github :  [@sangjjang96](https://github.com/sangjjang96)
+Github : [@sangjjang96](https://github.com/sangjjang96)
 ```
 
 ```
