@@ -1,37 +1,57 @@
-## Welcome to GitHub Pages
+# Lit
 
-You can use the [editor on GitHub](https://github.com/kookmin-sw/cap-template/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+**팀페이지 주소** -> https://kookmin-sw.github.io/capstone-2021-6
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### 1. 프로잭트 소개
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+#### Voxel Cone Tracing을 활용한 렌더러
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+특정 하드웨어 유닛(CUDA Core, Tensor Core, RT Core)을 사용하지 않고도 비슷한 효과를 낼 수 있는 렌더러 개발
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+사실적인 렌더링을 위해서는 Global Illumination, Shadows, Ambient Occlusion, Reflection, Caustics를 이용하여
+렌더링을 해야한다.
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
+우리는 그 중 Global Illumination효과를 내기 위하여 Voxel Cone Tracing이라는 기술을 공부하고 우리의 렌더러에 적용할 것이다.
+
+### 2. 소개 영상
+
+
+
+### 3. 팀 소개
+```
+곽상열
+
+Student ID : 20151769
+E-Mail : sangjjang96@kookmin.ac.kr
+Role : 
+Github :  [@sangjjang96](https://github.com/sangjjang96)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+```
+양교원
 
-### Jekyll Themes
+Student ID : 20171647
+E-Mail : yangkyowon@kookmin.ac.kr
+Role : 
+Github : [@SeolYang](https://github.com/SeolYang)
+```
+### 4. 사용법
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kookmin-sw/cap-template/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### 5. 개발
+
+협업 규칙
+
+Code Convention
+
+- 매크로 : Uppercase Snake
+- 함수명, 클래스, Enumerator, Enumerator Element, Constant : Pascal
+- 멤버변수 : Hungarian
+- 로컬변수 : Camel
+
+
