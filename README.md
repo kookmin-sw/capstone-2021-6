@@ -22,7 +22,7 @@
 
 
 ### 3. 팀 소개
-<img width="200" alt="곽상열" src="https://github.com/kookmin-sw/capstone-2021-6/blob/master/Docs/kwaksangyeol.jpg">
+<img width="200" alt="곽상열" src="https://user-images.githubusercontent.com/59731956/113509034-5f32ee00-958e-11eb-9a82-ede3401554eb.jpg">
 
 
 ```
@@ -35,7 +35,7 @@ Github : [@sangjjang96](https://github.com/sangjjang96)
 ```
 
 
-<img width="200" alt="양교원" src="https://github.com/kookmin-sw/capstone-2021-6/blob/master/Docs/mu.png">
+<img width="200" alt="양교원" src="https://user-images.githubusercontent.com/59731956/113509058-7a9df900-958e-11eb-8fe8-fa0a8f61b262.png">
 
 
 ```
