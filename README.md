@@ -22,18 +22,20 @@
 
 
 ### 3. 팀 소개
+![pic](https://github.com/kookmin-sw/capstone-2021-6/blob/master/Docs/kwaksangyeol.jpg)
 ```
 곽상열
-![pic](https://github.com/kookmin-sw/capstone-2021-6/blob/master/Docs/kwaksangyeol.jpg)
+
 Student ID : 20151769
 E-Mail : sangjjang96@kookmin.ac.kr
 Role : 팀장, 프레임워크 개발
 Github : [@sangjjang96](https://github.com/sangjjang96)
 ```
 
+![pic](https://github.com/kookmin-sw/capstone-2021-6/blob/master/Docs/mu.png)
 ```
 양교원
-![pic](https://github.com/kookmin-sw/capstone-2021-6/blob/master/Docs/mu.png)
+
 Student ID : 20171647
 E-Mail : yangkyowon@kookmin.ac.kr
 Role : 팀원, 알고리즘 연구 및 개발
