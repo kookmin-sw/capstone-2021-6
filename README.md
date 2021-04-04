@@ -23,7 +23,7 @@
 
 ### 3. 팀 소개
 ![pic](https://github.com/kookmin-sw/capstone-2021-6/blob/master/Docs/kwaksangyeol.jpg)
-<imgsrc="https://github.com/kookmin-sw/capstone-2021-6/blob/master/Docs/kwaksangyeol.jpg" width="100px" height="100px>
+<img src="https://github.com/kookmin-sw/capstone-2021-6/blob/master/Docs/kwaksangyeol.jpg" width="100px" height="100px>
 ```
 곽상열
 
