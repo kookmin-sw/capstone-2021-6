@@ -32,7 +32,7 @@ Role : 팀장, 프레임워크 개발
 Github : [@sangjjang96](https://github.com/sangjjang96)
 ```
 
-<img width="250" alt="양교원" src="https://github.com/kookmin-sw/capstone-2021-6/blob/master/Docs/mu.png">
+![kyowon](https://github.com/kookmin-sw/capstone-2021-6/blob/master/Docs/mu.png)
 ```
 양교원
 
