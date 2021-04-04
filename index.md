@@ -22,21 +22,23 @@
 
 
 ### 3. 팀 소개
+![sy](https://github.com/kookmin-sw/capstone-2021-6/blob/master/Docs/kwaksangyeol.jpg)
 ```
 곽상열
 
 Student ID : 20151769
 E-Mail : sangjjang96@kookmin.ac.kr
-Role : 
-Github :  [@sangjjang96](https://github.com/sangjjang96)
+Role : 팀장, 프레임워크 개발
+Github : [@sangjjang96](https://github.com/sangjjang96)
 ```
 
+![kw](https://github.com/kookmin-sw/capstone-2021-6/blob/master/Docs/mu.png)
 ```
 양교원
 
 Student ID : 20171647
 E-Mail : yangkyowon@kookmin.ac.kr
-Role : 
+Role : 팀원, 알고리즘 연구 및 개발
 Github : [@SeolYang](https://github.com/SeolYang)
 ```
 ### 4. 사용법
@@ -53,5 +55,4 @@ Code Convention
 - 함수명, 클래스, Enumerator, Enumerator Element, Constant : Pascal
 - 멤버변수 : Hungarian
 - 로컬변수 : Camel
-
 
