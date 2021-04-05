@@ -93,6 +93,9 @@
     <ClCompile Include="..\Sources\Rendering\Application.cpp">
       <Filter>Sources\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="..\Sources\Rendering\FBO.cpp">
+      <Filter>Sources\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Thirdparty\gl3w\includes\GL\gl3w.h">
@@ -594,6 +597,9 @@
       <Filter>Sources\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="..\Sources\Rendering\Application.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Rendering\FBO.h">
       <Filter>Sources\Rendering</Filter>
     </ClInclude>
   </ItemGroup>

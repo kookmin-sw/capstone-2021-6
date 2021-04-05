@@ -6,6 +6,7 @@
 #include "Camera.h"
 #include "Shader.h"
 #include "Model.h"
+#include "FBO.h"
 
 Renderer::Renderer() :
 	m_winWidth(0),
@@ -14,18 +15,14 @@ Renderer::Renderer() :
 	m_quadVAO(0),
 	m_quadVBO(0),
 
-	m_gBuffer(0),
-	m_posData(0),
-	m_normalData(0),
-	m_albedoData(0),
-	m_depth(0),
-
 	m_lightPos(0),
 	m_lightColor(0),
 	m_objPos(0),
 
 	m_geometryShader(nullptr),
 	m_lightShader(nullptr),
+
+	m_FBO(nullptr),
 
 	m_mainModel(nullptr),
 
@@ -39,47 +36,11 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_winWidth = width;
 	m_winHeight = height;
 
-	glGenFramebuffers(1, &m_gBuffer);
-	glBindFramebuffer(GL_FRAMEBUFFER, m_gBuffer);
-
-	glGenTextures(1, &m_posData);
-	glBindTexture(GL_TEXTURE_2D, m_posData);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, m_winWidth, m_winHeight, 0, GL_RGBA, GL_FLOAT, NULL);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_posData, 0);
-
-	glGenTextures(1, &m_normalData);
-	glBindTexture(GL_TEXTURE_2D, m_normalData);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, m_winWidth, m_winHeight, 0, GL_RGBA, GL_FLOAT, NULL);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, m_normalData, 0);
-
-	glGenTextures(1, &m_albedoData);
-	glBindTexture(GL_TEXTURE_2D, m_albedoData);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_winWidth, m_winHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, m_albedoData, 0);
-
-	unsigned int attachments[3] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };
-	glDrawBuffers(3, attachments);
-
-	glGenRenderbuffers(1, &m_depth);
-	glBindRenderbuffer(GL_RENDERBUFFER, m_depth);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, m_winWidth, m_winHeight);
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_depth);
-
-	auto fboStatus = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-	if (fboStatus != GL_FRAMEBUFFER_COMPLETE)
-	{
-		std::cout << "Framebuffer not complete: " << fboStatus << std::endl;
-	}
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
 	m_geometryShader = new Shader("../Resources/Shaders/GeometryPass.vs", "../Resources/Shaders/GeometryPass.fs");
 	m_lightShader = new Shader("../Resources/Shaders/LightPass.vs", "../Resources/Shaders/LightPass.fs");
+
+	m_FBO = new FBO(width, height);
+	m_FBO->Init();
 
 	m_camera = new Camera(glm::vec3(0.0f, 0.0f, 5.0f));
 	m_mainModel = new Model("../Resources/resources/objects/backpack/backpack.obj");
@@ -128,7 +89,7 @@ void Renderer::DeferredRendering()
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, m_gBuffer);
+	m_FBO->SetFrameBuffer();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glm::mat4 projection = glm::perspective(glm::radians(m_camera->m_ZOOM), (float)m_winWidth / (float)m_winHeight, 0.1f, 100.0f);
 	glm::mat4 view = m_camera->GetViewMatrix();
@@ -147,12 +108,7 @@ void Renderer::DeferredRendering()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	m_lightShader->UseProgram();
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, m_posData);
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, m_normalData);
-	glActiveTexture(GL_TEXTURE2);
-	glBindTexture(GL_TEXTURE_2D, m_albedoData);
+	m_FBO->SetTexture();
 
 	m_lightShader->SetVec3("camPos", m_camera->GetPos());
 	m_lightShader->SetFloat("metallic", 0.4f);

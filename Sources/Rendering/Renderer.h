@@ -6,6 +6,7 @@
 class Shader;
 class Model;
 class Camera;
+class FBO;
 class Renderer
 {
 public:
@@ -22,18 +23,14 @@ private:
 	unsigned int m_quadVAO;
 	unsigned int m_quadVBO;
 
-	unsigned int m_gBuffer;
-	unsigned int m_posData;
-	unsigned int m_normalData;
-	unsigned int m_albedoData;
-	unsigned int m_depth;
-
 	std::vector<glm::vec3> m_lightPos;
 	std::vector<glm::vec3> m_lightColor;
 	glm::vec3 m_objPos;
 
 	Shader* m_geometryShader;
 	Shader* m_lightShader;
+
+	FBO* m_FBO;
 
 	Model* m_mainModel;
 
