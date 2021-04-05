@@ -1,7 +1,5 @@
 # Lit
 
-**팀페이지 주소** -> https://kookmin-sw.github.io/capstone-2021-6
-
 ### 1. 프로잭트 소개
 
 
