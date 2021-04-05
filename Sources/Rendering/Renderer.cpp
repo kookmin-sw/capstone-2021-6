@@ -97,10 +97,10 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_lightPos.push_back(glm::vec3(-10.0f, -10.0f, 10.0f));
 	m_lightPos.push_back(glm::vec3(10.0f, -10.0f, 10.0f));
 
-	m_lightColor.push_back(glm::vec3(300.0f, 300.0f, 300.0f));
-	m_lightColor.push_back(glm::vec3(300.0f, 300.0f, 300.0f));
-	m_lightColor.push_back(glm::vec3(300.0f, 300.0f, 300.0f));
-	m_lightColor.push_back(glm::vec3(300.0f, 300.0f, 300.0f));
+	m_lightColor.push_back(glm::vec3(30.0f, 30.0f, 30.0f));
+	m_lightColor.push_back(glm::vec3(30.0f, 30.0f, 30.0f));
+	m_lightColor.push_back(glm::vec3(30.0f, 30.0f, 30.0f));
+	m_lightColor.push_back(glm::vec3(30.0f, 30.0f, 30.0f));
 
 	float quadVertices[] = {
 		-1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
