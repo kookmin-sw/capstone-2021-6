@@ -16,6 +16,8 @@ public:
 
     void DeferredRendering();
 
+	void ImageBasedLighing();
+
 private:
 	unsigned int m_winWidth;
 	unsigned int m_winHeight;

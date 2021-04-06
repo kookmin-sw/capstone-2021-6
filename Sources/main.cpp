@@ -12,7 +12,7 @@ int main()
    //_CrtSetBreakAlloc(x);
 #endif
 
-   Application* app = new Application("Capstone", 1280, 720);
+   Application* app = new Application("Lit", 1280, 720);
    int res = app->Run();
 
    return res;

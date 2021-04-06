@@ -129,3 +129,8 @@ void Renderer::DeferredRendering()
 		model = glm::scale(model, glm::vec3(0.5f));
 	}
 }
+
+void Renderer::ImageBasedLighing()
+{
+
+}
