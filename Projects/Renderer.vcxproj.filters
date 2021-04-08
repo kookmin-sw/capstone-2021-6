@@ -949,5 +949,26 @@
     <None Include="..\Resources\Shaders\LightPass.vs">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="..\Resources\Shaders\PBR.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\PBR.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\Cube.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\Cube.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\Irradiance.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\Background.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\Background.fs">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -200,10 +200,17 @@
     <ClInclude Include="D:\Developement\Thirparty\glfw\includes\GLFW\glfw3native.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Resources\Shaders\Background.fs" />
+    <None Include="..\Resources\Shaders\Background.vs" />
+    <None Include="..\Resources\Shaders\Cube.fs" />
+    <None Include="..\Resources\Shaders\Cube.vs" />
     <None Include="..\Resources\Shaders\GeometryPass.fs" />
     <None Include="..\Resources\Shaders\GeometryPass.vs" />
+    <None Include="..\Resources\Shaders\Irradiance.fs" />
     <None Include="..\Resources\Shaders\LightPass.fs" />
     <None Include="..\Resources\Shaders\LightPass.vs" />
+    <None Include="..\Resources\Shaders\PBR.fs" />
+    <None Include="..\Resources\Shaders\PBR.vs" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_common.inl" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_common_simd.inl" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_exponential.inl" />

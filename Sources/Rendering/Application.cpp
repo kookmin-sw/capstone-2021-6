@@ -72,7 +72,7 @@ int Application::Run()
 			fpsTimeCounter += actualElapsedTime;
 		}
 
-		processInput(m_window);
+		m_renderer->processInput(m_window, deltaTime);
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -89,11 +89,4 @@ int Application::Run()
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
-}
-
-// TODO : Set Camera Mode and ETC
-void processInput(GLFWwindow* window)
-{
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
 }

@@ -28,13 +28,11 @@ public:
 
 	glm::mat4 GetViewMatrix();
 
-	glm::mat4 GetProjMatrix();
-
 	glm::vec3 GetPos();
 
 	void ProcessKeyBoard(ECameraMovement direction, float deltaTime);
 
-	void ProcessMouse(float xOffset, float yOffset, bool constrainPitch);
+	void ProcessMouse(float xOffset, float yOffset, bool constrainPitch = true);
 
 private:
 	glm::vec3 m_position;

@@ -15,7 +15,9 @@ public:
 private:
 	unsigned int m_width;
 	unsigned int m_height;
+
 	unsigned int m_frameBuffer;
+
 	unsigned int m_posData;
 	unsigned int m_normalData;
 	unsigned int m_albedoData;
