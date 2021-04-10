@@ -6,6 +6,9 @@ in vec2 TexCoords;
 uniform sampler2D posData;
 uniform sampler2D normalData;
 uniform sampler2D albedoData;
+uniform samplerCube depthMap;
+
+uniform float far_plane;
 
 uniform float metallic;
 uniform float roughness;
@@ -22,6 +25,40 @@ uniform Light light[lightNum];
 uniform vec3 camPos;
 
 const float PI = 3.14159265359;
+
+vec3 gridSamplingDisk[20] = vec3[]
+(
+   vec3(1, 1,  1), vec3( 1, -1,  1), vec3(-1, -1,  1), vec3(-1, 1,  1), 
+   vec3(1, 1, -1), vec3( 1, -1, -1), vec3(-1, -1, -1), vec3(-1, 1, -1),
+   vec3(1, 1,  0), vec3( 1, -1,  0), vec3(-1, -1,  0), vec3(-1, 1,  0),
+   vec3(1, 0,  1), vec3(-1,  0,  1), vec3( 1,  0, -1), vec3(-1, 0, -1),
+   vec3(0, 1,  1), vec3( 0, -1,  1), vec3( 0, -1, -1), vec3( 0, 1, -1)
+);
+
+float ShadowCalculation(vec3 fragPos)
+{
+    vec3 fragToLight = fragPos - light[0].Position;
+
+    float currentDepth = length(fragToLight);
+
+    float shadow = 0.0;
+    float bias = 0.15;
+    int samples = 20;
+    float viewDistance = length(camPos - fragPos);
+    float diskRadius = (1.0 + (viewDistance / far_plane)) / 25.0;
+
+    for(int i = 0; i < samples; ++i)
+    {
+        float closestDepth = texture(depthMap, fragToLight + gridSamplingDisk[i] * diskRadius).r;
+        closestDepth *= far_plane;
+        if(currentDepth - bias > closestDepth)
+            shadow += 1.0;
+    }
+
+    shadow /= float(samples);      
+
+    return shadow;
+}
 
 float DistributionGGX(vec3 N, vec3 H, float roughness)
 {
@@ -77,6 +114,8 @@ void main()
     F0 = mix(F0, Diffuse, metallic);
 
     vec3 Lo = vec3(0.0);
+
+    float shadow = ShadowCalculation(FragPos);
 
     for(int i = 0; i < 4; i++)
     {

@@ -970,5 +970,14 @@
     <None Include="..\Resources\Shaders\Background.fs">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="..\Resources\Shaders\Shadow.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\Shadow.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\Shadow.gs">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
