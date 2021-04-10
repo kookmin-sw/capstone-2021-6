@@ -24,12 +24,21 @@ Renderer::Renderer() :
 	m_depthMapFBO(0),
 	m_depthCubemap(0),
 
+	m_captureFBO(0),
+	m_captureRBO(0),
+
+	m_hdrTexture(0),
+
+	m_irradianceMap(0),
+	m_envCubemap(0),
+
 	m_lightPos(0),
 	m_lightColor(0),
 	m_objPos(0),
 
 	m_geometryShader(nullptr),
 	m_lightShader(nullptr),
+	m_shadowShader(nullptr),
 
 	m_pbrShader(nullptr),
 	m_cubemapShader(nullptr),
