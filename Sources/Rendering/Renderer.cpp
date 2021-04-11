@@ -56,6 +56,7 @@ Renderer::Renderer() :
 // Set up Framebuffer object, Shader, Main Object and Screen Fill Quad
 void Renderer::StartRenderer(unsigned int width, unsigned int height)
 {
+	// Set Parameters
 	m_winWidth = width;
 	m_winHeight = height;
 
@@ -89,15 +90,16 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_backgroundShader->UseProgram();
 	m_backgroundShader->SetInt("environmentMap", 0);
 
+	// Set Objects
 	glm::vec3 objPos = glm::vec3(0.0f, 0.0f, 0.0f);
-	glm::vec3 planePos = glm::vec3(0.0f, -3.0f, 0.0f);
+	glm::vec3 planePos = glm::vec3(0.0f, 0.0f, 0.0f);
 	m_objPos = objPos;
 	m_planePos = planePos;
 
-	m_lightPos.push_back(glm::vec3(3.0f, 3.0f, 0.0f));
-	m_lightPos.push_back(glm::vec3(3.0f, 3.0f, 0.0f));
-	m_lightPos.push_back(glm::vec3(3.0f, 3.0f, 0.0f));
-	m_lightPos.push_back(glm::vec3(3.0f, 3.0f, 0.0f));
+	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
+	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
+	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
+	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
 
 	m_lightColor.push_back(glm::vec3(30.0f, 19.0f, 10.0f));
 	m_lightColor.push_back(glm::vec3(30.0f, 19.0f, 10.0f));
@@ -143,6 +145,7 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glBindVertexArray(0);
 
+	// Set Shadow
 	const unsigned int shadowWidth = 5120, shadowHeight = 5120;
 	m_shadowWidth = shadowWidth;
 	m_shadowHeight = shadowHeight;
@@ -313,6 +316,7 @@ void Renderer::processInput(GLFWwindow* window, float deltaTime)
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 
+	// KEYBOARD W A S D (Camera Movement)
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		m_camera->ProcessKeyBoard(FORWARD, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -322,6 +326,7 @@ void Renderer::processInput(GLFWwindow* window, float deltaTime)
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		m_camera->ProcessKeyBoard(RIGHT, deltaTime);
 
+	// KEYBOARD U H J K (Light Movement)
 	if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
 	{
 		for (unsigned int i = 0; i < m_lightPos.size(); i++)
@@ -346,15 +351,16 @@ void Renderer::processInput(GLFWwindow* window, float deltaTime)
 			m_lightPos[i].x += velocity;
 	}
 
+	// KEYBOARD F N (Light Distance Movement)
 	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
 	{
 		for (unsigned int i = 0; i < m_lightPos.size(); i++)
-			m_lightPos[i].z += velocity;
+			m_lightPos[i].z -= velocity;
 	}
 
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 	{
 		for (unsigned int i = 0; i < m_lightPos.size(); i++)
-			m_lightPos[i].z -= velocity;
+			m_lightPos[i].z += velocity;
 	}
 }
