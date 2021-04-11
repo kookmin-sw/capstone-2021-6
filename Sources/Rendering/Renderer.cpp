@@ -92,7 +92,7 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 
 	// Set Objects
 	glm::vec3 objPos = glm::vec3(0.0f, 0.0f, 0.0f);
-	glm::vec3 planePos = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 planePos = glm::vec3(0.0f, -3.0f, 0.0f);
 	m_objPos = objPos;
 	m_planePos = planePos;
 
@@ -101,10 +101,10 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
 	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
 
-	m_lightColor.push_back(glm::vec3(30.0f, 19.0f, 10.0f));
-	m_lightColor.push_back(glm::vec3(30.0f, 19.0f, 10.0f));
-	m_lightColor.push_back(glm::vec3(30.0f, 19.0f, 10.0f));
-	m_lightColor.push_back(glm::vec3(30.0f, 19.0f, 10.0f));
+	m_lightColor.push_back(glm::vec3(30.0f, 30.0f, 30.0f));
+	m_lightColor.push_back(glm::vec3(30.0f, 30.0f, 30.0f));
+	m_lightColor.push_back(glm::vec3(30.0f, 30.0f, 30.0f));
+	m_lightColor.push_back(glm::vec3(30.0f, 30.0f, 30.0f));
 
 	float quadVertices[] = {
 		-1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
@@ -114,13 +114,13 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	};
 
 	float planeVertices[] = {
-		 5.0f, -5.0f,  5.0f, 25.0f,  0.0f,
-		-5.0f, -5.0f,  5.0f,  0.0f,  0.0f,
-		-5.0f, -5.0f,  5.0f,  0.0f, 25.0f,
+		 5.0f, -0.5f,  5.0f, 1.0f, 0.0f,
+		-5.0f, -0.5f,  5.0f, 0.0f, 0.0f,
+		-5.0f, -0.5f, -5.0f, 0.0f, 1.0f,
 
-		 5.0f, -5.0f,  5.0f, 25.0f,  0.0f,
-		-5.0f, -5.0f,  5.0f,  0.0f, 25.0f,
-		 5.0f, -5.0f,  5.0f, 25.0f, 25.0f
+		 5.0f, -0.5f,  5.0f, 1.0f, 0.0f,
+		-5.0f, -0.5f, -5.0f, 0.0f, 1.0f,
+		 5.0f, -0.5f, -5.0f, 1.0f, 1.0f
 	};
 
 	glGenVertexArrays(1, &m_quadVAO);
@@ -138,7 +138,7 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	glGenBuffers(1, &m_planeVBO);
 	glBindVertexArray(m_planeVAO);
 	glBindBuffer(GL_ARRAY_BUFFER, m_planeVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(planeVertices), planeVertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(planeVertices), &planeVertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(1);
@@ -171,7 +171,6 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
 }
 
 // Main Rendering Part
@@ -196,11 +195,11 @@ void Renderer::DeferredRendering()
 	m_geometryShader->SetMat4("modelMatrix", model);
 	m_mainModel->Draw(*m_geometryShader);
 
-	model = glm::translate(model, m_planePos);
-	model = glm::scale(model, glm::vec3(0.5f));
-	m_geometryShader->SetMat4("modelMatrix", model);
-	glBindVertexArray(m_planeVAO);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	//model = glm::translate(model, m_planePos);
+	//model = glm::scale(model, glm::vec3(1.0f));
+	//m_geometryShader->SetMat4("modelMatrix", model);
+	//glBindVertexArray(m_planeVAO);
+	//glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	glBindVertexArray(0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -234,11 +233,11 @@ void Renderer::DeferredRendering()
 	m_shadowShader->SetMat4("modelMatrix", model);
 	m_mainModel->Draw(*m_shadowShader);
 
-	model = glm::translate(model, m_planePos);
-	model = glm::scale(model, glm::vec3(0.5f));
-	m_shadowShader->SetMat4("modelMatrix", model);
-	glBindVertexArray(m_planeVAO);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	//model = glm::translate(model, m_planePos);
+	//model = glm::scale(model, glm::vec3(1.0f));
+	//m_shadowShader->SetMat4("modelMatrix", model);
+	//glBindVertexArray(m_planeVAO);
+	//glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	glBindVertexArray(0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -270,9 +269,9 @@ void Renderer::DeferredRendering()
 		model = glm::scale(model, glm::vec3(0.5f));		
 	}
 
-	//glBindVertexArray(m_quadVAO);
-	//glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	//glBindVertexArray(0);
+	glBindVertexArray(m_quadVAO);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	glBindVertexArray(0);
 }
 
 void Renderer::ImageBasedLighing()

@@ -3,11 +3,11 @@
 
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
+#include <imgui/imgui.h>
 
 #include <iostream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow* window);
 
 float deltaTime = 0.0f;
 float lastFrameTime = 0.0f;
