@@ -24,14 +24,6 @@ Renderer::Renderer() :
 	m_depthMapFBO(0),
 	m_depthCubemap(0),
 
-	m_captureFBO(0),
-	m_captureRBO(0),
-
-	m_hdrTexture(0),
-
-	m_irradianceMap(0),
-	m_envCubemap(0),
-
 	m_lightPos(0),
 	m_lightColor(0),
 	m_objPos(0),
@@ -39,11 +31,6 @@ Renderer::Renderer() :
 	m_geometryShader(nullptr),
 	m_lightShader(nullptr),
 	m_shadowShader(nullptr),
-
-	m_pbrShader(nullptr),
-	m_cubemapShader(nullptr),
-	m_irradianceShader(nullptr),
-	m_backgroundShader(nullptr),
 
 	m_FBO(nullptr),
 
@@ -63,11 +50,6 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_geometryShader = new Shader("../Resources/Shaders/GeometryPass.vs", "../Resources/Shaders/GeometryPass.fs");
 	m_lightShader = new Shader("../Resources/Shaders/LightPass.vs", "../Resources/Shaders/LightPass.fs");
 	m_shadowShader = new Shader("../Resources/Shaders/Shadow.vs", "../Resources/Shaders/Shadow.fs", "../Resources/Shaders/Shadow.gs");
-	
-	m_pbrShader = new Shader("../Resources/Shaders/PBR.vs", "../Resources/Shaders/PBR.fs");
-	m_cubemapShader = new Shader("../Resources/Shaders/Cube.vs", "../Resources/Shaders/Cube.fs");
-	m_irradianceShader = new Shader("../Resources/Shaders/Cube.vs", "../Resources/Shaders/Irradiance.fs");
-	m_backgroundShader = new Shader("../Resources/Shaders/Background.vs", "../Resources/Shaders/Background.fs");
 
 	m_FBO = new FBO(width, height);
 	m_FBO->Init();
@@ -81,14 +63,6 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_lightShader->SetInt("albedoData", 2);
 	m_lightShader->SetInt("depthMap", 3);
 	m_lightShader->SetFloat("ao", 1.0f);
-
-	m_pbrShader->UseProgram();
-	m_pbrShader->SetInt("irradianceMap", 0);
-	m_pbrShader->SetInt("albedoData", 1);
-	m_pbrShader->SetFloat("ao", 1.0f);
-
-	m_backgroundShader->UseProgram();
-	m_backgroundShader->SetInt("environmentMap", 0);
 
 	// Set Objects
 	glm::vec3 objPos = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -114,13 +88,13 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	};
 
 	float planeVertices[] = {
-		 5.0f, -0.5f,  5.0f, 1.0f, 0.0f,
-		-5.0f, -0.5f,  5.0f, 0.0f, 0.0f,
-		-5.0f, -0.5f, -5.0f, 0.0f, 1.0f,
+		 25.0f, -0.5f,  25.0f,  0.0f, 1.0f, 0.0f,  25.0f,  0.0f,
+		-25.0f, -0.5f,  25.0f,  0.0f, 1.0f, 0.0f,   0.0f,  0.0f,
+		-25.0f, -0.5f, -25.0f,  0.0f, 1.0f, 0.0f,   0.0f, 25.0f,
 
-		 5.0f, -0.5f,  5.0f, 1.0f, 0.0f,
-		-5.0f, -0.5f, -5.0f, 0.0f, 1.0f,
-		 5.0f, -0.5f, -5.0f, 1.0f, 1.0f
+		 25.0f, -0.5f,  25.0f,  0.0f, 1.0f, 0.0f,  25.0f,  0.0f,
+		-25.0f, -0.5f, -25.0f,  0.0f, 1.0f, 0.0f,   0.0f, 25.0f,
+		 25.0f, -0.5f, -25.0f,  0.0f, 1.0f, 0.0f,  25.0f, 25.0f
 	};
 
 	glGenVertexArrays(1, &m_quadVAO);
@@ -138,11 +112,13 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	glGenBuffers(1, &m_planeVBO);
 	glBindVertexArray(m_planeVAO);
 	glBindBuffer(GL_ARRAY_BUFFER, m_planeVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(planeVertices), &planeVertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(planeVertices), planeVertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
 	glBindVertexArray(0);
 
 	// Set Shadow
@@ -195,11 +171,11 @@ void Renderer::DeferredRendering()
 	m_geometryShader->SetMat4("modelMatrix", model);
 	m_mainModel->Draw(*m_geometryShader);
 
-	//model = glm::translate(model, m_planePos);
-	//model = glm::scale(model, glm::vec3(1.0f));
-	//m_geometryShader->SetMat4("modelMatrix", model);
-	//glBindVertexArray(m_planeVAO);
-	//glDrawArrays(GL_TRIANGLES, 0, 6);
+	model = glm::translate(model, m_planePos);
+	model = glm::scale(model, glm::vec3(1.0f));
+	m_geometryShader->SetMat4("modelMatrix", model);
+	glBindVertexArray(m_planeVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	glBindVertexArray(0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -233,11 +209,11 @@ void Renderer::DeferredRendering()
 	m_shadowShader->SetMat4("modelMatrix", model);
 	m_mainModel->Draw(*m_shadowShader);
 
-	//model = glm::translate(model, m_planePos);
-	//model = glm::scale(model, glm::vec3(1.0f));
-	//m_shadowShader->SetMat4("modelMatrix", model);
-	//glBindVertexArray(m_planeVAO);
-	//glDrawArrays(GL_TRIANGLES, 0, 6);
+	model = glm::translate(model, m_planePos);
+	model = glm::scale(model, glm::vec3(1.0f));
+	m_shadowShader->SetMat4("modelMatrix", model);
+	glBindVertexArray(m_planeVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	glBindVertexArray(0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -247,17 +223,13 @@ void Renderer::DeferredRendering()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	m_lightShader->UseProgram();
 	m_FBO->SetTexture();
-	glActiveTexture(GL_TEXTURE3);
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_depthCubemap);
 
 	m_lightShader->SetVec3("camPos", m_camera->GetPos());
 	m_lightShader->SetFloat("fat_plane", far_plane);
 	m_lightShader->SetFloat("metallic", 0.4f);
 	m_lightShader->SetFloat("roughness", 0.4f);
-
-	glBindVertexArray(m_quadVAO);
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	glBindVertexArray(0);
 
 	for (unsigned int i = 0; i < m_lightPos.size(); i++)
 	{
@@ -272,40 +244,6 @@ void Renderer::DeferredRendering()
 	glBindVertexArray(m_quadVAO);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	glBindVertexArray(0);
-}
-
-void Renderer::ImageBasedLighing()
-{
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	m_pbrShader->UseProgram();
-	glm::mat4 view = m_camera->GetViewMatrix();
-	m_pbrShader->SetMat4("viewMatrix", view);
-	m_pbrShader->SetVec3("camPos", m_camera->GetPos());
-
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, m_irradianceMap);
-
-	glm::mat4 model = glm::mat4(1.0f);
-
-	m_pbrShader->SetFloat("metallic", 0.4f);
-	m_pbrShader->SetFloat("roughness", 0.4f);
-	m_pbrShader->SetMat4("modelMatrix", model);
-
-	glBindVertexArray(m_quadVAO);
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	glBindVertexArray(0);
-
-	for (unsigned int i = 0; i < m_lightPos.size(); i++)
-	{
-		m_lightShader->SetVec3("light[" + std::to_string(i) + "].Position", m_lightPos[i]);
-		m_lightShader->SetVec3("light[" + std::to_string(i) + "].Color", m_lightColor[i]);
-
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, m_lightPos[i]);
-		model = glm::scale(model, glm::vec3(0.5f));
-	}
 }
 
 void Renderer::processInput(GLFWwindow* window, float deltaTime)

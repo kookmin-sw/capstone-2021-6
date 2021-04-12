@@ -16,8 +16,6 @@ public:
 
     void DeferredRendering();
 
-	void ImageBasedLighing();
-
 	void processInput(GLFWwindow* window, float deltaTime);
 
 private:
@@ -36,14 +34,6 @@ private:
 	unsigned int m_depthMapFBO;
 	unsigned int m_depthCubemap;
 
-	unsigned int m_captureFBO;
-	unsigned int m_captureRBO;
-
-	unsigned int m_hdrTexture;
-
-	unsigned int m_envCubemap;
-	unsigned int m_irradianceMap;
-
 	std::vector<glm::vec3> m_lightPos;
 	std::vector<glm::vec3> m_lightColor;
 	glm::vec3 m_objPos;
@@ -52,11 +42,6 @@ private:
 	Shader* m_geometryShader;
 	Shader* m_lightShader;
 	Shader* m_shadowShader;
-	
-	Shader* m_pbrShader;
-	Shader* m_cubemapShader;
-	Shader* m_irradianceShader;
-	Shader* m_backgroundShader;
 
 	FBO* m_FBO;
 

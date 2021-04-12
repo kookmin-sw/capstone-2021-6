@@ -66,7 +66,7 @@ int Application::Run()
 		{
 			double actualElapsedTime = (currentFrameTime - fpsTimeCounter);
 
-			std::cout << "mSPF: " << ((actualElapsedTime * 1000) / (double)frameCounter) << " FPS: " << ((double)frameCounter / actualElapsedTime) << std::endl;
+			std::cout << " FPS: " << ((double)frameCounter / actualElapsedTime) << std::endl;
 
 			frameCounter = 0;
 			fpsTimeCounter += actualElapsedTime;
