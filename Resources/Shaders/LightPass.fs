@@ -6,6 +6,7 @@ in vec2 TexCoords;
 uniform sampler2D posData;
 uniform sampler2D normalData;
 uniform sampler2D albedoData;
+
 uniform samplerCube depthMap;
 
 uniform float far_plane;
@@ -31,13 +32,12 @@ float ShadowCalculation(vec3 fragPos)
     vec3 fragToLight = fragPos - light[0].Position;
 
     float closestDepth = texture(depthMap, fragToLight).r;
-
     closestDepth *= far_plane;
 
     float currentDepth = length(fragToLight);
 
-    float bias = 0.05; 
-    float shadow = currentDepth -  bias > closestDepth ? 1.0 : 0.0;        
+    float bias = 0.05;
+    float shadow = currentDepth - bias > closestDepth ? 1.0 : 0.0;
 
     return shadow;
 }
@@ -99,7 +99,7 @@ void main()
 
     float shadow = ShadowCalculation(FragPos);
 
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < 4; ++i)
     {
         vec3 L = normalize(light[i].Position - FragPos);
         vec3 H = normalize(V + L);
@@ -122,7 +122,7 @@ void main()
 
         float NdotL = max(dot(N, L), 0.0);
 
-        Lo += (kD * Diffuse / PI + specular) * radiance * NdotL;
+        Lo += (kD * Diffuse / PI + specular) * (1.0 - shadow) * radiance * NdotL;
     }
 
     vec3 ambient = vec3(0.03) * Diffuse * ao;

@@ -48,7 +48,7 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_winHeight = height;
 
 	m_geometryShader = new Shader("../Resources/Shaders/GeometryPass.vs", "../Resources/Shaders/GeometryPass.fs");
-	m_lightShader = new Shader("../Resources/Shaders/LightPass.vs", "../Resources/Shaders/LightPass.fs");
+	m_lightShader = new Shader("../Resources/Shaders/LightPass.vs", "../Resources/Shaders/test.fs");
 	m_shadowShader = new Shader("../Resources/Shaders/Shadow.vs", "../Resources/Shaders/Shadow.fs", "../Resources/Shaders/Shadow.gs");
 
 	m_FBO = new FBO(width, height);
@@ -75,10 +75,10 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
 	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
 
-	m_lightColor.push_back(glm::vec3(30.0f, 30.0f, 30.0f));
-	m_lightColor.push_back(glm::vec3(30.0f, 30.0f, 30.0f));
-	m_lightColor.push_back(glm::vec3(30.0f, 30.0f, 30.0f));
-	m_lightColor.push_back(glm::vec3(30.0f, 30.0f, 30.0f));
+	m_lightColor.push_back(glm::vec3(300.0f, 300.0f, 300.0f));
+	m_lightColor.push_back(glm::vec3(300.0f, 300.0f, 300.0f));
+	m_lightColor.push_back(glm::vec3(300.0f, 300.0f, 300.0f));
+	m_lightColor.push_back(glm::vec3(300.0f, 300.0f, 300.0f));
 
 	float quadVertices[] = {
 		-1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
@@ -223,7 +223,7 @@ void Renderer::DeferredRendering()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	m_lightShader->UseProgram();
 	m_FBO->SetTexture();
-	glActiveTexture(GL_TEXTURE0);
+	glActiveTexture(GL_TEXTURE3);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_depthCubemap);
 
 	m_lightShader->SetVec3("camPos", m_camera->GetPos());
@@ -238,7 +238,7 @@ void Renderer::DeferredRendering()
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, m_lightPos[i]);
-		model = glm::scale(model, glm::vec3(0.5f));		
+		model = glm::scale(model, glm::vec3(10.0f));		
 	}
 
 	glBindVertexArray(m_quadVAO);
