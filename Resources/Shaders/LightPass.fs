@@ -27,17 +27,34 @@ uniform vec3 camPos;
 
 const float PI = 3.14159265359;
 
+vec3 gridSamplingDisk[20] = vec3[]
+(
+   vec3(1, 1,  1), vec3( 1, -1,  1), vec3(-1, -1,  1), vec3(-1, 1,  1), 
+   vec3(1, 1, -1), vec3( 1, -1, -1), vec3(-1, -1, -1), vec3(-1, 1, -1),
+   vec3(1, 1,  0), vec3( 1, -1,  0), vec3(-1, -1,  0), vec3(-1, 1,  0),
+   vec3(1, 0,  1), vec3(-1,  0,  1), vec3( 1,  0, -1), vec3(-1, 0, -1),
+   vec3(0, 1,  1), vec3( 0, -1,  1), vec3( 0, -1, -1), vec3( 0, 1, -1)
+);
+
 float ShadowCalculation(vec3 fragPos)
 {
     vec3 fragToLight = fragPos - light[0].Position;
 
-    float closestDepth = texture(depthMap, fragToLight).r;
-    closestDepth *= far_plane;
-
     float currentDepth = length(fragToLight);
 
-    float bias = 0.05;
-    float shadow = currentDepth - bias > closestDepth ? 1.0 : 0.0;
+    float shadow = 0.0;
+    float bias = 0.15;
+    int samples = 20;
+    float viewDistance = length(camPos - fragPos);
+    float diskRadius = (1.0 + (viewDistance / far_plane)) / 25.0;
+    for(int i = 0; i < samples; ++i)
+    {
+        float closestDepth = texture(depthMap, fragToLight + gridSamplingDisk[i] * diskRadius).r;
+        closestDepth *= far_plane;  
+        if(currentDepth - bias > closestDepth)
+            shadow += 1.0;
+    }
+    shadow /= float(samples);
 
     return shadow;
 }
@@ -86,14 +103,14 @@ void main()
 {
     vec3 FragPos = texture(posData, TexCoords).rgb;
     vec3 Normal = texture(normalData, TexCoords).rgb;
-    vec3 Diffuse = texture(albedoData, TexCoords).rgb;
+    vec3 Albedo = pow(texture(albedoData, TexCoords).rgb, vec3(2.2));
     float Specular = texture(albedoData, TexCoords).a;
 
     vec3 N = normalize(Normal);
     vec3 V = normalize(camPos - FragPos);
 
     vec3 F0 = vec3(0.04);
-    F0 = mix(F0, Diffuse, metallic);
+    F0 = mix(F0, Albedo, metallic);
 
     vec3 Lo = vec3(0.0);
 
@@ -122,12 +139,12 @@ void main()
 
         float NdotL = max(dot(N, L), 0.0);
 
-        Lo += (kD * Diffuse / PI + specular) * (1.0 - shadow) * radiance * NdotL;
+        Lo += (kD * Albedo / PI + specular) * radiance * NdotL;
     }
 
-    vec3 ambient = vec3(0.03) * Diffuse * ao;
+    vec3 ambient = vec3(0.03) * Albedo * ao;
 
-    vec3 color = ambient + Lo;
+    vec3 color = ambient + (1.0 - shadow) * Lo;
 
     color = color / (color + vec3(1.0));
 

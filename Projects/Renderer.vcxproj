@@ -207,6 +207,7 @@
     <None Include="..\Resources\Shaders\Shadow.fs" />
     <None Include="..\Resources\Shaders\Shadow.gs" />
     <None Include="..\Resources\Shaders\Shadow.vs" />
+    <None Include="..\Resources\Shaders\test.fs" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_common.inl" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_common_simd.inl" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_exponential.inl" />

@@ -44,6 +44,11 @@ glm::vec3 Camera::GetPos()
 	return m_position;
 }
 
+void Camera::SetPos(glm::vec3 pos)
+{
+	m_position = pos;
+}
+
 void Camera::ProcessKeyBoard(ECameraMovement direction, float deltaTime)
 {
 	float velocity = m_movementSpeed * deltaTime;

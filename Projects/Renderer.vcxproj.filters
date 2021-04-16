@@ -958,5 +958,8 @@
     <None Include="..\Resources\Shaders\Shadow.vs">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="..\Resources\Shaders\test.fs">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

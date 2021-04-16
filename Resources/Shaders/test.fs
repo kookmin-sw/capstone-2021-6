@@ -63,6 +63,7 @@ void main()
 {
     vec3 color = texture(albedoData, TexCoords).rgb;
     vec3 normal = normalize(texture(normalData, TexCoords).rgb);
+    vec3 lightColor = vec3(10.0);
 
     vec3 ambient = 0.3 * color;
 
@@ -75,7 +76,7 @@ void main()
     float spec = 0.0;
     vec3 halfwayDir = normalize(lightDir + viewDir);
     spec = pow(max(dot(normal, halfwayDir), 0.0), 64.0);
-    vec3 specular = spec * light[0].Color;
+    vec3 specular = spec * lightColor;
 
     float shadow = ShadowCalculation(texture(posData, TexCoords).rgb);
     vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * color;

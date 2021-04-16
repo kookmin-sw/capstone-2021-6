@@ -30,6 +30,8 @@ public:
 
 	glm::vec3 GetPos();
 
+	void SetPos(glm::vec3 pos);
+
 	void ProcessKeyBoard(ECameraMovement direction, float deltaTime);
 
 	void ProcessMouse(float xOffset, float yOffset, bool constrainPitch = true);

@@ -28,8 +28,8 @@ private:
 	unsigned int m_quadVAO;
 	unsigned int m_quadVBO;
 
-	unsigned int m_planeVAO;
-	unsigned int m_planeVBO;
+	unsigned int m_cubeVAO;
+	unsigned int m_cubeVBO;
 
 	unsigned int m_depthMapFBO;
 	unsigned int m_depthCubemap;
@@ -37,7 +37,7 @@ private:
 	std::vector<glm::vec3> m_lightPos;
 	std::vector<glm::vec3> m_lightColor;
 	glm::vec3 m_objPos;
-	glm::vec3 m_planePos;
+	glm::vec3 m_cubePos;
 
 	Shader* m_geometryShader;
 	Shader* m_lightShader;
