@@ -18,8 +18,8 @@ Renderer::Renderer() :
 	m_quadVAO(0),
 	m_quadVBO(0),
 
-	m_cubeVAO(0),
-	m_cubeVBO(0),
+	m_planeVAO(0),
+	m_planeVBO(0),
 
 	m_depthMapFBO(0),
 	m_depthCubemap(0),
@@ -48,7 +48,7 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_winHeight = height;
 
 	m_geometryShader = new Shader("../Resources/Shaders/GeometryPass.vs", "../Resources/Shaders/GeometryPass.fs");
-	m_lightShader = new Shader("../Resources/Shaders/LightPass.vs", "../Resources/Shaders/test.fs");
+	m_lightShader = new Shader("../Resources/Shaders/LightPass.vs", "../Resources/Shaders/LightPass.fs");
 	m_shadowShader = new Shader("../Resources/Shaders/Shadow.vs", "../Resources/Shaders/Shadow.fs", "../Resources/Shaders/Shadow.gs");
 
 	m_FBO = new FBO(width, height);
@@ -68,7 +68,7 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	glm::vec3 objPos = glm::vec3(0.0f, 0.0f, 0.0f);
 	glm::vec3 planePos = glm::vec3(0.0f, 0.0f, 0.0f);
 	m_objPos = objPos;
-	m_cubePos = planePos;
+	m_planePos = planePos;
 
 	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
 	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
@@ -87,41 +87,14 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 		 1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
 	};
 
-	float cubeVertices[] = {
-		-1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f, 0.0f, 0.0f,
-		 1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f, 1.0f, 1.0f, 
-		 1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f, 1.0f, 0.0f,        
-		 1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f, 1.0f, 1.0f, 
-		-1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f, 0.0f, 0.0f,
-		-1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f, 0.0f, 1.0f, 
+	float planeVertices[] = {
+		 25.0f, -0.5f,  25.0f,  0.0f, 1.0f, 0.0f,  25.0f,  0.0f,
+		-25.0f, -0.5f,  25.0f,  0.0f, 1.0f, 0.0f,   0.0f,  0.0f,
+		-25.0f, -0.5f, -25.0f,  0.0f, 1.0f, 0.0f,   0.0f, 25.0f,
 
-		-1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f, 1.0f, 0.0f, 
-		-1.0f,  1.0f, -1.0f, -1.0f,  0.0f,  0.0f, 1.0f, 1.0f, 
-		-1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, 0.0f, 1.0f, 
-		-1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, 0.0f, 1.0f, 
-		-1.0f, -1.0f,  1.0f, -1.0f,  0.0f,  0.0f, 0.0f, 0.0f, 
-		-1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f, 1.0f, 0.0f, 
-	
-		 1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f, 1.0f, 0.0f, 
-		 1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f, 0.0f, 1.0f,
-		 1.0f,  1.0f, -1.0f,  1.0f,  0.0f,  0.0f, 1.0f, 1.0f,       
-		 1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f, 0.0f, 1.0f, 
-		 1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f, 1.0f, 0.0f,
-		 1.0f, -1.0f,  1.0f,  1.0f,  0.0f,  0.0f, 0.0f, 0.0f,     
-	
-		-1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f, 0.0f, 1.0f, 
-		 1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f, 1.0f, 1.0f, 
-		 1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f, 1.0f, 0.0f, 
-		 1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f, 1.0f, 0.0f, 
-		-1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f, 0.0f, 0.0f, 
-		-1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f, 0.0f, 1.0f, 
-			
-		-1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f, 0.0f, 1.0f, 
-		 1.0f,  1.0f , 1.0f,  0.0f,  1.0f,  0.0f, 1.0f, 0.0f, 
-		 1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f, 1.0f, 1.0f,     
-		 1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f, 1.0f, 0.0f, 
-		-1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f, 0.0f, 1.0f, 
-		-1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f, 0.0f, 0.0f
+		 25.0f, -0.5f,  25.0f,  0.0f, 1.0f, 0.0f,  25.0f,  0.0f,
+		-25.0f, -0.5f, -25.0f,  0.0f, 1.0f, 0.0f,   0.0f, 25.0f,
+		 25.0f, -0.5f, -25.0f,  0.0f, 1.0f, 0.0f,  25.0f, 25.0f
 	};
 
 	glGenVertexArrays(1, &m_quadVAO);
@@ -135,11 +108,11 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glBindVertexArray(0);
 
-	glGenVertexArrays(1, &m_cubeVAO);
-	glGenBuffers(1, &m_cubeVBO);
-	glBindVertexArray(m_cubeVAO);
-	glBindBuffer(GL_ARRAY_BUFFER, m_cubeVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
+	glGenVertexArrays(1, &m_planeVAO);
+	glGenBuffers(1, &m_planeVBO);
+	glBindVertexArray(m_planeVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, m_planeVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(planeVertices), planeVertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(1);
@@ -198,11 +171,11 @@ void Renderer::DeferredRendering()
 	m_geometryShader->SetMat4("modelMatrix", model);
 	m_mainModel->Draw(*m_geometryShader);
 
-	model = glm::translate(model, m_cubePos);
+	model = glm::translate(model, m_planePos);
 	model = glm::scale(model, glm::vec3(5.0f));
 	m_geometryShader->SetMat4("modelMatrix", model);
-	glBindVertexArray(m_cubeVAO);
-	glDrawArrays(GL_TRIANGLES, 0, 30);
+	glBindVertexArray(m_planeVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	glBindVertexArray(0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -236,11 +209,11 @@ void Renderer::DeferredRendering()
 	m_shadowShader->SetMat4("modelMatrix", model);
 	m_mainModel->Draw(*m_shadowShader);
 
-	model = glm::translate(model, m_cubePos);
+	model = glm::translate(model, m_planePos);
 	model = glm::scale(model, glm::vec3(5.0f));
 	m_shadowShader->SetMat4("modelMatrix", model);
-	glBindVertexArray(m_cubeVAO);
-	glDrawArrays(GL_TRIANGLES, 0, 30);
+	glBindVertexArray(m_planeVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	glBindVertexArray(0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);

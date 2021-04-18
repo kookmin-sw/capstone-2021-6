@@ -128,7 +128,7 @@ void main()
         float G = GeometrySmith(N, V, L, roughness);
         vec3 F = fresnelSchlick(clamp(dot(H, V), 0.0, 1.0), F0);
 
-        vec3 nominator = NDF * G * F;
+        vec3 nominator = (1.0-shadow) * NDF * G * F;
         float denominator = 4 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0);
         vec3 specular = nominator / max(denominator, 0.001);
 
@@ -144,7 +144,7 @@ void main()
 
     vec3 ambient = vec3(0.03) * Albedo * ao;
 
-    vec3 color = ambient + (1.0 - shadow) * Lo;
+    vec3 color = ambient + Lo;
 
     color = color / (color + vec3(1.0));
 
