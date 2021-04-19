@@ -122,6 +122,7 @@ void main()
     {
         vec3 L = normalize(light[i].Position - FragPos);
         vec3 H = normalize(V + L);
+
         float distance = length(light[i].Position - FragPos);
         float attenuation = 1.0 / (distance * distance);
         vec3 radiance = light[i].Color * attenuation;
@@ -141,12 +142,12 @@ void main()
 
         float NdotL = max(dot(N, L), 0.0);
 
-        Lo += (kD * Albedo / PI + specular) * radiance * NdotL;
+        Lo += ((kD * Albedo / PI) + specular) * radiance * NdotL;
     }
 
     vec3 ambient = vec3(0.03) * Albedo * ao;
 
-    vec3 color = ambient + (1.0 - shadow) * Lo;
+    vec3 color = ambient + Lo;
 
     color = color / (color + vec3(1.0));
 
