@@ -40,6 +40,45 @@ Renderer::Renderer() :
 {
 }
 
+Renderer::~Renderer()
+{
+	if (m_geometryShader != nullptr)
+	{
+		delete m_geometryShader;
+		m_geometryShader = nullptr;
+	}
+
+	if (m_lightShader != nullptr)
+	{
+		delete m_lightShader;
+		m_lightShader = nullptr;
+	}
+
+	if (m_shadowShader != nullptr)
+	{
+		delete m_shadowShader;
+		m_shadowShader = nullptr;
+	}
+
+	if (m_FBO != nullptr)
+	{
+		delete m_FBO;
+		m_FBO = nullptr;
+	}
+
+	if (m_mainModel != nullptr)
+	{
+		delete m_mainModel;
+		m_mainModel = nullptr;
+	}
+
+	if (m_camera != nullptr)
+	{
+		delete m_camera;
+		m_camera = nullptr;
+	}
+}
+
 // Set up Framebuffer object, Shader, Main Object and Screen Fill Quad
 void Renderer::StartRenderer(unsigned int width, unsigned int height)
 {

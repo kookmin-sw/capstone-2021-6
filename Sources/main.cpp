@@ -2,7 +2,7 @@
 #include <crtdbg.h>
 #endif
 
-#include "Rendering/Application.h"
+#include "Core/Application.h"
 
 int main()
 {
@@ -14,6 +14,8 @@ int main()
 
    Application* app = new Application("Lit", 1200, 800);
    int res = app->Run();
+   delete app;
+   app = nullptr;
 
    return res;
 }

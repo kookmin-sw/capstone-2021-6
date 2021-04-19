@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Sources\Core\Application.cpp" />
     <ClCompile Include="..\Sources\main.cpp" />
-    <ClCompile Include="..\Sources\Rendering\Application.cpp" />
     <ClCompile Include="..\Sources\Rendering\Camera.cpp" />
     <ClCompile Include="..\Sources\Rendering\FBO.cpp" />
     <ClCompile Include="..\Sources\Rendering\Mesh.cpp" />
@@ -30,13 +30,46 @@
     <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Sources\Rendering\Application.h" />
+    <ClInclude Include="..\Sources\Core\Application.h" />
     <ClInclude Include="..\Sources\Rendering\Camera.h" />
     <ClInclude Include="..\Sources\Rendering\FBO.h" />
     <ClInclude Include="..\Sources\Rendering\Mesh.h" />
     <ClInclude Include="..\Sources\Rendering\Model.h" />
     <ClInclude Include="..\Sources\Rendering\Renderer.h" />
     <ClInclude Include="..\Sources\Rendering\Shader.h" />
+    <ClInclude Include="..\Thirdparty\assimp\ai_assert.h" />
+    <ClInclude Include="..\Thirdparty\assimp\anim.h" />
+    <ClInclude Include="..\Thirdparty\assimp\camera.h" />
+    <ClInclude Include="..\Thirdparty\assimp\cexport.h" />
+    <ClInclude Include="..\Thirdparty\assimp\cfileio.h" />
+    <ClInclude Include="..\Thirdparty\assimp\cimport.h" />
+    <ClInclude Include="..\Thirdparty\assimp\color4.h" />
+    <ClInclude Include="..\Thirdparty\assimp\config.h" />
+    <ClInclude Include="..\Thirdparty\assimp\DefaultLogger.hpp" />
+    <ClInclude Include="..\Thirdparty\assimp\defs.h" />
+    <ClInclude Include="..\Thirdparty\assimp\Exporter.hpp" />
+    <ClInclude Include="..\Thirdparty\assimp\Importer.hpp" />
+    <ClInclude Include="..\Thirdparty\assimp\importerdesc.h" />
+    <ClInclude Include="..\Thirdparty\assimp\IOStream.hpp" />
+    <ClInclude Include="..\Thirdparty\assimp\IOSystem.hpp" />
+    <ClInclude Include="..\Thirdparty\assimp\light.h" />
+    <ClInclude Include="..\Thirdparty\assimp\Logger.hpp" />
+    <ClInclude Include="..\Thirdparty\assimp\LogStream.hpp" />
+    <ClInclude Include="..\Thirdparty\assimp\material.h" />
+    <ClInclude Include="..\Thirdparty\assimp\matrix3x3.h" />
+    <ClInclude Include="..\Thirdparty\assimp\matrix4x4.h" />
+    <ClInclude Include="..\Thirdparty\assimp\mesh.h" />
+    <ClInclude Include="..\Thirdparty\assimp\metadata.h" />
+    <ClInclude Include="..\Thirdparty\assimp\NullLogger.hpp" />
+    <ClInclude Include="..\Thirdparty\assimp\postprocess.h" />
+    <ClInclude Include="..\Thirdparty\assimp\ProgressHandler.hpp" />
+    <ClInclude Include="..\Thirdparty\assimp\quaternion.h" />
+    <ClInclude Include="..\Thirdparty\assimp\scene.h" />
+    <ClInclude Include="..\Thirdparty\assimp\texture.h" />
+    <ClInclude Include="..\Thirdparty\assimp\types.h" />
+    <ClInclude Include="..\Thirdparty\assimp\vector2.h" />
+    <ClInclude Include="..\Thirdparty\assimp\vector3.h" />
+    <ClInclude Include="..\Thirdparty\assimp\version.h" />
     <ClInclude Include="..\Thirdparty\gl3w\includes\GL\gl3w.h" />
     <ClInclude Include="..\Thirdparty\gl3w\includes\GL\glcorearb.h" />
     <ClInclude Include="..\Thirdparty\gl3w\includes\KHR\khrplatform.h" />
@@ -208,6 +241,13 @@
     <None Include="..\Resources\Shaders\Shadow.gs" />
     <None Include="..\Resources\Shaders\Shadow.vs" />
     <None Include="..\Resources\Shaders\test.fs" />
+    <None Include="..\Thirdparty\assimp\color4.inl" />
+    <None Include="..\Thirdparty\assimp\material.inl" />
+    <None Include="..\Thirdparty\assimp\matrix3x3.inl" />
+    <None Include="..\Thirdparty\assimp\matrix4x4.inl" />
+    <None Include="..\Thirdparty\assimp\quaternion.inl" />
+    <None Include="..\Thirdparty\assimp\vector2.inl" />
+    <None Include="..\Thirdparty\assimp\vector3.inl" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_common.inl" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_common_simd.inl" />
     <None Include="..\Thirdparty\glm\includes\glm\detail\func_exponential.inl" />

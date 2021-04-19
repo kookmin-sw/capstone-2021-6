@@ -8,6 +8,7 @@ class Application
 {
 public:
 	Application(const std::string& title, unsigned int width, unsigned int height);
+	~Application();
 
 	int Run();
 

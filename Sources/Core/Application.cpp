@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "Renderer.h"
+#include "../Rendering/Renderer.h"
 
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
@@ -21,6 +21,21 @@ Application::Application(const std::string& title, unsigned int width, unsigned 
 	m_winHeight(height),
 	m_window(nullptr)
 {
+}
+
+Application::~Application()
+{
+	if (m_renderer != nullptr)
+	{
+		delete m_renderer;
+		m_renderer = nullptr;
+	}
+
+	if (m_window != nullptr)
+	{
+		delete m_window;
+		m_window = nullptr;
+	}
 }
 
 int Application::Run()

@@ -1,7 +1,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <../../../Sources/Rendering/Shader.h>
+#include "Shader.h"
 
 #include <string>
 #include <vector>
