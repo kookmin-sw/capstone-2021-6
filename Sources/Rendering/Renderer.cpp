@@ -28,6 +28,8 @@ Renderer::Renderer() :
 	m_lightColor(0),
 	m_objPos(0),
 
+	m_bShadows(true),
+
 	m_geometryShader(nullptr),
 	m_lightShader(nullptr),
 	m_shadowShader(nullptr),
@@ -101,7 +103,6 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_lightShader->SetInt("normalData", 1);
 	m_lightShader->SetInt("albedoData", 2);
 	m_lightShader->SetInt("depthMap", 3);
-	m_lightShader->SetFloat("ao", 1.0f);
 
 	// Set Objects
 	glm::vec3 objPos = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -221,7 +222,7 @@ void Renderer::DeferredRendering()
 	
 	// Set Shadow Pass
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	float near_plane = 0.1f, far_plane = 100.0f;
+	float near_plane = 1.0f, far_plane = 25.0f;
 	glm::mat4 shadowProj = glm::perspective(glm::radians(90.0f), (float)m_shadowWidth / (float)m_shadowHeight, near_plane, far_plane);
 	std::vector<glm::mat4> shadowTransforms;
 	shadowTransforms.push_back(shadowProj * glm::lookAt(m_lightPos[0], m_lightPos[0] + glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
@@ -269,6 +270,8 @@ void Renderer::DeferredRendering()
 	m_lightShader->SetFloat("fat_plane", far_plane);
 	m_lightShader->SetFloat("metallic", 0.4f);
 	m_lightShader->SetFloat("roughness", 0.4f);
+	m_lightShader->SetFloat("ao", 1.0f);
+	m_lightShader->SetBool("b_shadows", m_bShadows);
 
 	for (unsigned int i = 0; i < m_lightPos.size(); i++)
 	{
@@ -346,5 +349,15 @@ void Renderer::processInput(GLFWwindow* window, float deltaTime)
 
 		for (unsigned int i = 0; i < m_lightPos.size(); i++)
 			m_lightPos[i] = glm::vec3(0.0f, 3.0f, 0.0f);
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
+	{
+		if (m_bShadows)
+			m_bShadows = false;
+		else
+			m_bShadows = true;
+
+		std::cout << m_bShadows << std::endl;
 	}
 }

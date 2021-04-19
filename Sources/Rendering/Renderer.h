@@ -36,6 +36,8 @@ private:
 	unsigned int m_depthMapFBO;
 	unsigned int m_depthCubemap;
 
+	bool m_bShadows;
+
 	std::vector<glm::vec3> m_lightPos;
 	std::vector<glm::vec3> m_lightColor;
 	glm::vec3 m_objPos;
