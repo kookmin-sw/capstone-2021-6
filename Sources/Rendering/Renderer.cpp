@@ -110,10 +110,10 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_objPos = objPos;
 	m_planePos = planePos;
 
-	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
-	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
-	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
-	m_lightPos.push_back(glm::vec3(0.0f, 3.0f, 0.0f));
+	m_lightPos.push_back(glm::vec3(3.0f, 5.0f, -3.0f));
+	m_lightPos.push_back(glm::vec3(-3.0f, 5.0f, 3.0f));
+	m_lightPos.push_back(glm::vec3(3.0f, 5.0f, -3.0f));
+	m_lightPos.push_back(glm::vec3(-3.0f, 5.0f, 3.0f));
 
 	m_lightColor.push_back(glm::vec3(30.0f, 19.0f, 10.0f));
 	m_lightColor.push_back(glm::vec3(30.0f, 19.0f, 10.0f));
