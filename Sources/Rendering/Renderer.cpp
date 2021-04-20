@@ -189,8 +189,7 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	glEnable(GL_DEPTH_TEST);
 }
 
-// Main Rendering Part
-void Renderer::DeferredRendering()
+void Renderer::GeometryPass()
 {
 	// Set Geometry Pass
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -219,7 +218,10 @@ void Renderer::DeferredRendering()
 
 	glBindVertexArray(0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	
+}
+
+void Renderer::ShadowPass()
+{
 	// Set Shadow Pass
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	float near_plane = 1.0f, far_plane = 25.0f;
@@ -243,6 +245,7 @@ void Renderer::DeferredRendering()
 	m_shadowShader->SetFloat("far_plane", far_plane);
 	m_shadowShader->SetVec3("lightPos", m_lightPos[0]);
 
+	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::mat4(1.0f);
 	model = glm::translate(model, m_objPos);
 	model = glm::scale(model, glm::vec3(0.5f));
@@ -257,7 +260,10 @@ void Renderer::DeferredRendering()
 
 	glBindVertexArray(0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
 
+void Renderer::LightPass()
+{
 	// Set Light Pass
 	glViewport(0, 0, m_winWidth, m_winHeight);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -267,11 +273,13 @@ void Renderer::DeferredRendering()
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_depthCubemap);
 
 	m_lightShader->SetVec3("camPos", m_camera->GetPos());
-	m_lightShader->SetFloat("fat_plane", far_plane);
+	m_lightShader->SetFloat("fat_plane", 100.0f);
 	m_lightShader->SetFloat("metallic", 0.4f);
 	m_lightShader->SetFloat("roughness", 0.4f);
 	m_lightShader->SetFloat("ao", 1.0f);
 	m_lightShader->SetBool("b_shadows", m_bShadows);
+
+	glm::mat4 model = glm::mat4(1.0f);
 
 	for (unsigned int i = 0; i < m_lightPos.size(); i++)
 	{
@@ -280,7 +288,7 @@ void Renderer::DeferredRendering()
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, m_lightPos[i]);
-		model = glm::scale(model, glm::vec3(10.0f));		
+		model = glm::scale(model, glm::vec3(10.0f));
 	}
 
 	glBindVertexArray(m_quadVAO);

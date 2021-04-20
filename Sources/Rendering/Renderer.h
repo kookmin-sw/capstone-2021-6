@@ -16,7 +16,11 @@ public:
 
 	void StartRenderer(unsigned int width, unsigned int height);
 
-    void DeferredRendering();
+	void GeometryPass();
+
+	void ShadowPass();
+
+	void LightPass();
 
 	void processInput(GLFWwindow* window, float deltaTime);
 

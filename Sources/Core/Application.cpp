@@ -92,7 +92,10 @@ int Application::Run()
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		m_renderer->DeferredRendering();
+		//m_renderer->DeferredRendering();
+		m_renderer->GeometryPass();
+		m_renderer->ShadowPass();
+		m_renderer->LightPass();
 
 		glfwSwapBuffers(m_window);
 		glfwPollEvents();
