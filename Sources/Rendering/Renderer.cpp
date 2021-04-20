@@ -6,7 +6,7 @@
 #include "Camera.h"
 #include "Shader.h"
 #include "Model.h"
-#include "FBO.h"
+#include "GBuffer.h"
 
 Renderer::Renderer() :
 	m_winWidth(0),
@@ -34,7 +34,7 @@ Renderer::Renderer() :
 	m_lightShader(nullptr),
 	m_shadowShader(nullptr),
 
-	m_FBO(nullptr),
+	m_GBuffer(nullptr),
 
 	m_mainModel(nullptr),
 
@@ -62,10 +62,10 @@ Renderer::~Renderer()
 		m_shadowShader = nullptr;
 	}
 
-	if (m_FBO != nullptr)
+	if (m_GBuffer != nullptr)
 	{
-		delete m_FBO;
-		m_FBO = nullptr;
+		delete m_GBuffer;
+		m_GBuffer = nullptr;
 	}
 
 	if (m_mainModel != nullptr)
@@ -92,8 +92,8 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_lightShader = new Shader("../Resources/Shaders/LightPass.vs", "../Resources/Shaders/LightPass.fs");
 	m_shadowShader = new Shader("../Resources/Shaders/Shadow.vs", "../Resources/Shaders/Shadow.fs", "../Resources/Shaders/Shadow.gs");
 
-	m_FBO = new FBO(width, height);
-	m_FBO->Init();
+	m_GBuffer = new GBuffer(width, height);
+	m_GBuffer->Init();
 
 	m_camera = new Camera(glm::vec3(0.0f, 0.0f, 5.0f));
 	m_mainModel = new Model("../Resources/resources/objects/backpack/backpack.obj");
@@ -196,7 +196,7 @@ void Renderer::DeferredRendering()
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	m_FBO->SetFrameBuffer();
+	m_GBuffer->SetFrameBuffer();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glm::mat4 projection = glm::perspective(glm::radians(m_camera->m_ZOOM), (float)m_winWidth / (float)m_winHeight, 0.1f, 100.0f);
 	glm::mat4 view = m_camera->GetViewMatrix();
@@ -262,7 +262,7 @@ void Renderer::DeferredRendering()
 	glViewport(0, 0, m_winWidth, m_winHeight);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	m_lightShader->UseProgram();
-	m_FBO->SetTexture();
+	m_GBuffer->SetTexture();
 	glActiveTexture(GL_TEXTURE3);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_depthCubemap);
 
@@ -351,6 +351,7 @@ void Renderer::processInput(GLFWwindow* window, float deltaTime)
 			m_lightPos[i] = glm::vec3(0.0f, 3.0f, 0.0f);
 	}
 
+	// Set Shadow On/Off
 	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
 	{
 		if (m_bShadows)

@@ -1,7 +1,7 @@
-#include "FBO.h"
+#include "GBuffer.h"
 #include <iostream>
 
-FBO::FBO(unsigned int width, unsigned int height) :
+GBuffer::GBuffer(unsigned int width, unsigned int height) :
 	m_width(width),
 	m_height(height),
 	m_frameBuffer(0),
@@ -12,7 +12,7 @@ FBO::FBO(unsigned int width, unsigned int height) :
 {
 }
 
-void FBO::Init()
+void GBuffer::Init()
 {
 	glGenFramebuffers(1, &m_frameBuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, m_frameBuffer);
@@ -50,7 +50,7 @@ void FBO::Init()
 	}
 }
 
-void FBO::SetFrameBuffer()
+void GBuffer::SetFrameBuffer()
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, m_frameBuffer);
 
@@ -58,7 +58,7 @@ void FBO::SetFrameBuffer()
 	glDrawBuffers(3, attachments);
 }
 
-void FBO::SetTexture()
+void GBuffer::SetTexture()
 {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, m_posData);

@@ -6,7 +6,7 @@
 class Shader;
 class Model;
 class Camera;
-class FBO;
+class GBuffer;
 class Renderer
 {
 public:
@@ -47,7 +47,7 @@ private:
 	Shader* m_lightShader;
 	Shader* m_shadowShader;
 
-	FBO* m_FBO;
+	GBuffer* m_GBuffer;
 
 	Model* m_mainModel;
 

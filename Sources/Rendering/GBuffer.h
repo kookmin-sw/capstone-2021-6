@@ -1,10 +1,10 @@
 #pragma once
 #include <GL/gl3w.h>
 
-class FBO
+class GBuffer
 {
 public:
-	FBO(unsigned int width, unsigned int height);
+	GBuffer(unsigned int width, unsigned int height);
 
 	void Init();
 
