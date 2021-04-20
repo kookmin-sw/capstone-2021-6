@@ -414,7 +414,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Thirdparty\tinyobj\includes;$(SolutionDir)..\Thirdparty\gl3w\includes;$(SolutionDir)..\Thirdparty\glfw\includes;$(SolutionDir)..\Thirdparty\glm\includes;$(SolutionDir)..\Thirdparty\imgui\includes;$(SolutionDir)..\Thirdparty\json\includes;$(SolutionDir)..\Thirdparty\stb_image\includes;$(SolutionDir)..\Thirdparty\tinygltf\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Thirdparty\tinyobj\includes;$(SolutionDir)..\Thirdparty\gl3w\includes;$(SolutionDir)..\Thirdparty\glfw\includes;$(SolutionDir)..\Thirdparty\glm\includes;$(SolutionDir)..\Thirdparty\imgui\includes;$(SolutionDir)..\Thirdparty\json\includes;$(SolutionDir)..\Thirdparty\stb_image\includes;$(SolutionDir)..\Thirdparty\tinygltf\includes;$(SolutionDir)..\Thirdparty\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>

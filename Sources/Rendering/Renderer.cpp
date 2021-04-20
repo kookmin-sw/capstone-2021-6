@@ -28,7 +28,7 @@ Renderer::Renderer() :
 	m_lightColor(0),
 	m_objPos(0),
 
-	m_bShadows(true),
+	m_bShadows(false),
 
 	m_geometryShader(nullptr),
 	m_lightShader(nullptr),
