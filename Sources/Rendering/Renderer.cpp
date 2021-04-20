@@ -360,13 +360,12 @@ void Renderer::processInput(GLFWwindow* window, float deltaTime)
 	}
 
 	// Set Shadow On/Off
-	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
+	if (!m_bShadows && (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS))
 	{
-		if (m_bShadows)
-			m_bShadows = false;
-		else
-			m_bShadows = true;
-
-		std::cout << m_bShadows << std::endl;
+		m_bShadows = true;
+	}
+	else if (m_bShadows && (glfwGetKey(window, GLFW_KEY_B) == GLFW_RELEASE))
+	{
+		m_bShadows = false;
 	}
 }
