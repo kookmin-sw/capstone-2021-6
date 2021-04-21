@@ -97,23 +97,17 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 
 	m_camera = new Camera(glm::vec3(0.0f, 0.0f, 5.0f));
 	m_mainModel = new Model("../Resources/resources/objects/backpack/backpack.obj");
-	
-	m_lightShader->UseProgram();
-	m_lightShader->SetInt("posData", 0);
-	m_lightShader->SetInt("normalData", 1);
-	m_lightShader->SetInt("albedoData", 2);
-	m_lightShader->SetInt("depthMap", 3);
 
 	// Set Objects
 	glm::vec3 objPos = glm::vec3(0.0f, 0.0f, 0.0f);
-	glm::vec3 planePos = glm::vec3(0.0f, -3.0f, 0.0f);
+	glm::vec3 planePos = glm::vec3(0.0f, -2.0f, 0.0f);
 	m_objPos = objPos;
 	m_planePos = planePos;
 
-	m_lightPos.push_back(glm::vec3( 3.0f, 5.0f,-3.0f));
-	m_lightPos.push_back(glm::vec3(-3.0f, 5.0f,-3.0f));
-	m_lightPos.push_back(glm::vec3( 3.0f, 5.0f, 3.0f));
-	m_lightPos.push_back(glm::vec3(-3.0f, 5.0f, 3.0f));
+	m_lightPos.push_back(glm::vec3(0.0f, 5.0f, 0.0f));
+	m_lightPos.push_back(glm::vec3(0.0f, 5.0f, 0.0f));
+	m_lightPos.push_back(glm::vec3(0.0f, 5.0f, 0.0f));
+	m_lightPos.push_back(glm::vec3(0.0f, 5.0f, 0.0f));
 
 	m_lightColor.push_back(glm::vec3(30.0f, 19.0f, 10.0f));
 	m_lightColor.push_back(glm::vec3(30.0f, 19.0f, 10.0f));
@@ -186,12 +180,17 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	glReadBuffer(GL_NONE);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	glEnable(GL_DEPTH_TEST);
+	m_lightShader->UseProgram();
+	m_lightShader->SetInt("posData", 0);
+	m_lightShader->SetInt("normalData", 1);
+	m_lightShader->SetInt("albedoData", 2);
+	m_lightShader->SetInt("depthMap", 3);
 }
 
 void Renderer::GeometryPass()
 {
 	// Set Geometry Pass
+	glViewport(0, 0, m_winWidth, m_winHeight);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -204,17 +203,7 @@ void Renderer::GeometryPass()
 	m_geometryShader->SetMat4("projMatrix", projection);
 	m_geometryShader->SetMat4("viewMatrix", view);
 
-	model = glm::mat4(1.0f);
-	model = glm::translate(model, m_objPos);
-	model = glm::scale(model, glm::vec3(0.5f));
-	m_geometryShader->SetMat4("modelMatrix", model);
-	m_mainModel->Draw(*m_geometryShader);
-
-	model = glm::translate(model, m_planePos);
-	model = glm::scale(model, glm::vec3(1.0f));
-	m_geometryShader->SetMat4("modelMatrix", model);
-	glBindVertexArray(m_planeVAO);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	RenderScene(*m_geometryShader);
 
 	glBindVertexArray(0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -225,7 +214,7 @@ void Renderer::ShadowPass()
 	// Set Shadow Pass
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	float near_plane = 0.1f, far_plane = 100.0f;
+	float near_plane = 1.0f, far_plane = 25.0f;
 	glm::mat4 shadowProj = glm::perspective(glm::radians(90.0f), (float)m_shadowWidth / (float)m_shadowHeight, near_plane, far_plane);
 	std::vector<glm::mat4> shadowTransforms;
 	shadowTransforms.push_back(shadowProj * glm::lookAt(m_lightPos[0], m_lightPos[0] + glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
@@ -246,18 +235,7 @@ void Renderer::ShadowPass()
 	m_shadowShader->SetFloat("far_plane", far_plane);
 	m_shadowShader->SetVec3("lightPos", m_lightPos[0]);
 
-	glm::mat4 model = glm::mat4(1.0f);
-	model = glm::mat4(1.0f);
-	model = glm::translate(model, m_objPos);
-	model = glm::scale(model, glm::vec3(0.5f));
-	m_shadowShader->SetMat4("modelMatrix", model);
-	m_mainModel->Draw(*m_shadowShader);
-
-	model = glm::translate(model, m_planePos);
-	model = glm::scale(model, glm::vec3(1.0f));
-	m_shadowShader->SetMat4("modelMatrix", model);
-	glBindVertexArray(m_planeVAO);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	RenderScene(*m_shadowShader);
 
 	glBindVertexArray(0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -292,9 +270,32 @@ void Renderer::LightPass()
 		model = glm::scale(model, glm::vec3(10.0f));
 	}
 
+	RenderQuad();
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glBindVertexArray(0);
+}
+
+void Renderer::RenderScene(Shader& shader)
+{
+	glm::mat4 model = glm::mat4(1.0f);
+	model = glm::mat4(1.0f);
+	model = glm::translate(model, m_objPos);
+	model = glm::scale(model, glm::vec3(0.5f));
+	shader.SetMat4("modelMatrix", model);
+	m_mainModel->Draw(*m_shadowShader);
+
+	model = glm::translate(model, m_planePos);
+	model = glm::scale(model, glm::vec3(1.0f));
+	shader.SetMat4("modelMatrix", model);
+	glBindVertexArray(m_planeVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
+void Renderer::RenderQuad()
+{
 	glBindVertexArray(m_quadVAO);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	glBindVertexArray(0);
 }
 
 void Renderer::processInput(GLFWwindow* window, float deltaTime)
@@ -352,12 +353,13 @@ void Renderer::processInput(GLFWwindow* window, float deltaTime)
 			m_lightPos[i].z += velocity;
 	}
 
+	// Reset Cam and LightPos
 	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
 	{
 		m_camera->SetPos(glm::vec3(0.0f, 0.0f, 5.0f));
 
 		for (unsigned int i = 0; i < m_lightPos.size(); i++)
-			m_lightPos[i] = glm::vec3(0.0f, 3.0f, 0.0f);
+			m_lightPos[i] = glm::vec3(0.0f, 5.0f, 0.0f);
 	}
 
 	// Set Shadow On/Off

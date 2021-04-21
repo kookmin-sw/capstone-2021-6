@@ -22,6 +22,10 @@ public:
 
 	void LightPass();
 
+	void RenderScene(Shader& shader);
+
+	void RenderQuad();
+
 	void processInput(GLFWwindow* window, float deltaTime);
 
 private:
