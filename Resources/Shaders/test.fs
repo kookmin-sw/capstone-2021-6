@@ -15,6 +15,8 @@ uniform float metallic;
 uniform float roughness;
 uniform float ao;
 
+uniform bool b_shadows;
+
 struct Light {
     vec3 Position;
     vec3 Color;
@@ -61,24 +63,26 @@ float ShadowCalculation(vec3 fragPos)
 
 void main()
 {
+    vec3 FragPos = texture(posData, TexCoords).rgb;
+    vec3 Normal = texture(normalData, TexCoords).rgb;
     vec3 color = texture(albedoData, TexCoords).rgb;
     vec3 normal = normalize(texture(normalData, TexCoords).rgb);
     vec3 lightColor = vec3(10.0);
 
     vec3 ambient = 0.3 * color;
 
-    vec3 lightDir = normalize(light[0].Position - texture(posData, TexCoords).rgb);
+    vec3 lightDir = normalize(light[0].Position - FragPos);
     float diff = max(dot(lightDir, normal), 0.0);
     vec3 diffuse = diff * light[0].Color;
 
-    vec3 viewDir = normalize(camPos - texture(posData, TexCoords).rgb);
+    vec3 viewDir = normalize(camPos - FragPos);
     vec3 reflectDir = reflect(-lightDir, normal);
     float spec = 0.0;
     vec3 halfwayDir = normalize(lightDir + viewDir);
     spec = pow(max(dot(normal, halfwayDir), 0.0), 64.0);
     vec3 specular = spec * lightColor;
 
-    float shadow = ShadowCalculation(texture(posData, TexCoords).rgb);
+    float shadow = b_shadows ? ShadowCalculation(FragPos) : 0.0;
     vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * color;
 
     FragColor = vec4(lighting, 1.0);
