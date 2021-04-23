@@ -2,6 +2,9 @@
 #include <glm/glm.hpp>
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
+#include <stb_image/stb_image.h>
+
+#include <iostream>
 
 class Shader;
 class Model;

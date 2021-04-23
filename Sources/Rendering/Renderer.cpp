@@ -100,7 +100,7 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 
 	// Set Objects
 	glm::vec3 objPos = glm::vec3(0.0f, 0.0f, 0.0f);
-	glm::vec3 planePos = glm::vec3(0.0f, -2.0f, 0.0f);
+	glm::vec3 planePos = glm::vec3(0.0f, -5.0f, 0.0f);
 	m_objPos = objPos;
 	m_planePos = planePos;
 
@@ -276,7 +276,7 @@ void Renderer::RenderScene(Shader& shader)
 	model = glm::translate(model, m_objPos);
 	model = glm::scale(model, glm::vec3(0.5f));
 	shader.SetMat4("modelMatrix", model);
-	m_mainModel->Draw(*m_shadowShader);
+	m_mainModel->Draw(shader);
 
 	model = glm::translate(model, m_planePos);
 	model = glm::scale(model, glm::vec3(1.0f));
