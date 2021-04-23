@@ -95,7 +95,7 @@ void Renderer::StartRenderer(unsigned int width, unsigned int height)
 	m_GBuffer = new GBuffer(width, height);
 	m_GBuffer->Init();
 
-	m_camera = new Camera(glm::vec3(0.0f, 0.0f, 5.0f));
+	m_camera = new Camera(glm::vec3(0.0f, 0.0f, 10.0f));
 	m_mainModel = new Model("../Resources/resources/objects/backpack/backpack.obj");
 
 	// Set Objects
