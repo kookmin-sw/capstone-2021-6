@@ -1,77 +1,64 @@
-[![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=349909&assignment_repo_type=GroupAssignmentRepo)
-# Welcome to GitHub
+# Lit
 
-캡스톤 팀 생성을 축하합니다.
-
-## 팀소개 및 페이지를 꾸며주세요.
-
-- 프로젝트 소개
-  - 프로젝트 설치방법 및 데모, 사용방법, 프리뷰등을 readme.md에 작성.
-  - Api나 사용방법등 내용이 많을경우 wiki에 꾸미고 링크 추가.
-
-- 팀페이지 꾸미기
-  - 프로젝트 소개 및 팀원 소개
-  - index.md 예시보고 수정.
-
-- GitHub Pages 리파지토리 Settings > Options > GitHub Pages 
-  - Source를 marster branch
-  - Theme Chooser에서 태마선택
-  - 수정후 팀페이지 확인하여 점검.
-
-**팀페이지 주소** -> https://kookmin-sw.github.io/ '{{자신의 리파지토리 아이디}}'
-
-**예시)** 2020년 0조  https://kookmin-sw.github.io/capstone-2020-0/
-
-
-## 내용에 아래와 같은 내용들을 추가하세요.
+**팀페이지 주소** -> https://kookmin-sw.github.io/capstone-2021-6
 
 ### 1. 프로잭트 소개
 
-프로젝트
+
+#### Voxel Cone Tracing을 활용한 렌더러
+
+
+특정 하드웨어 유닛(CUDA Core, Tensor Core, RT Core)을 사용하지 않고도 비슷한 효과를 낼 수 있는 렌더러 개발
+
+
+사실적인 렌더링을 위해서는 Global Illumination, Shadows, Ambient Occlusion, Reflection, Caustics를 이용하여
+렌더링을 해야한다.
+
+
+우리는 그 중 Global Illumination효과를 내기 위하여 Voxel Cone Tracing이라는 기술을 공부하고 우리의 렌더러에 적용할 것이다.
 
 ### 2. 소개 영상
 
-프로젝트 소개하는 영상을 추가하세요
+
 
 ### 3. 팀 소개
-
-팀을 소개하세요.
-
-팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
-
-### 4. 사용법
-
-소스코드제출시 설치법이나 사용법을 작성하세요.
-
-### 5. 기타
-
-추가적인 내용은 자유롭게 작성하세요.
+<img width="200" alt="곽상열" src="https://user-images.githubusercontent.com/59731956/113509034-5f32ee00-958e-11eb-9a82-ede3401554eb.jpg">
 
 
-## Markdown을 사용하여 내용꾸미기
+```
+곽상열
 
-Markdown은 작문을 스타일링하기위한 가볍고 사용하기 쉬운 구문입니다. 여기에는 다음을위한 규칙이 포함됩니다.
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+Student ID : 20151769
+E-Mail : sangjjang96@kookmin.ac.kr
+Role : 팀장, 프레임워크 개발
+Github : [@sangjjang96](https://github.com/sangjjang96)
 ```
 
-자세한 내용은 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Support or Contact
+<img width="200" alt="양교원" src="https://user-images.githubusercontent.com/59731956/113509058-7a9df900-958e-11eb-8fe8-fa0a8f61b262.png">
 
-readme 파일 생성에 추가적인 도움이 필요하면 [도움말](https://help.github.com/articles/about-readmes/) 이나 [contact support](https://github.com/contact) 을 이용하세요.
+
+```
+양교원
+
+Student ID : 20171647
+E-Mail : yangkyowon@kookmin.ac.kr
+Role : 팀원, 알고리즘 연구 및 개발
+Github : [@SeolYang](https://github.com/SeolYang)
+```
+### 4. 사용법
+
+
+
+### 5. 개발
+
+협업 규칙
+
+Code Convention
+
+- 매크로 : Uppercase Snake
+- 함수명, 클래스, Enumerator, Enumerator Element, Constant : Pascal
+- 멤버변수 : Hungarian
+- 로컬변수 : Camel
+
+
