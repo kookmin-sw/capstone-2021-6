@@ -5,7 +5,6 @@
 *.slo
 *.lo
 *.o
-*.obj
 
 # Precompiled Headers
 *.gch
@@ -14,7 +13,6 @@
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
 
 # Fortran module files
 *.mod
@@ -38,8 +36,7 @@ Projects/.vs/Renderer/v16/.suo
 *.pdb
 *.log
 *.recipe
-Builds/Intermediate/x64/Debug/Renderer.vcxproj.FileListAbsolute.txt
-Builds/Intermediate/x64/Release/Renderer.vcxproj.FileListAbsolute.txt
+Builds/
 *.ilk
 *.iobj
 *.ipdb
