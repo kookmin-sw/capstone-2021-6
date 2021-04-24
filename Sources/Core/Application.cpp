@@ -9,8 +9,8 @@
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
-float deltaTime = 0.0f;
-float lastFrameTime = 0.0f;
+double deltaTime = 0.0f;
+double lastFrameTime = 0.0f;
 int frameCounter = 0;
 double fpsTimeCounter = glfwGetTime();
 
@@ -71,7 +71,7 @@ int Application::Run()
 	{
 		++frameCounter;
 
-		float currentFrameTime = glfwGetTime();
+		const double currentFrameTime = glfwGetTime();
 		
 		deltaTime = currentFrameTime - lastFrameTime;
 		lastFrameTime = currentFrameTime;
@@ -81,21 +81,14 @@ int Application::Run()
 		{
 			double actualElapsedTime = (currentFrameTime - fpsTimeCounter);
 
-			std::cout << " FPS: " << ((double)frameCounter / actualElapsedTime) << std::endl;
+			std::cout << " FPS: " << (frameCounter / actualElapsedTime) << std::endl;
 
 			frameCounter = 0;
 			fpsTimeCounter += actualElapsedTime;
 		}
 
 		m_renderer->processInput(m_window, deltaTime);
-
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		m_renderer->ShadowPass();
-		m_renderer->GeometryPass();
-		m_renderer->LightPass();
-
+		m_renderer->Render();
 		glfwSwapBuffers(m_window);
 		glfwPollEvents();
 	}

@@ -19,6 +19,15 @@ public:
 
 	void StartRenderer(unsigned int width, unsigned int height);
 
+	void Render()
+	{
+		this->ClearBackBuffer();
+
+		this->ShadowPass();
+		this->GeometryPass();
+		this->LightPass();
+	}
+
 	void GeometryPass();
 
 	void ShadowPass();
@@ -65,6 +74,12 @@ public:
 		}
 
 		return textureID;
+	}
+
+	void ClearBackBuffer()
+	{
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
 private:
