@@ -1,12 +1,14 @@
 ﻿#pragma once
 #include <glm/glm.hpp>
+#include <string>
 
 class Model;
 class Shader;
 class Entity
 {
 public:
-   Entity() :
+   Entity(const std::string_view name) :
+   m_name(name),
    m_transform(glm::mat4()),
    m_model(nullptr)
    {
@@ -47,6 +49,7 @@ public:
    void Render(Shader& shader) const;
 
 private:
+   std::string m_name;
    glm::mat4 m_transform;
    Model* m_model;
 
