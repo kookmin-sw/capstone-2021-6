@@ -19,6 +19,7 @@
     <ClCompile Include="..\Sources\Rendering\Mesh.cpp" />
     <ClCompile Include="..\Sources\Rendering\Model.cpp" />
     <ClCompile Include="..\Sources\Rendering\Renderer.cpp" />
+    <ClCompile Include="..\Sources\Rendering\Scene.cpp" />
     <ClCompile Include="..\Sources\Rendering\Shader.cpp" />
     <ClCompile Include="..\Thirdparty\gl3w\includes\GL\gl3w.c" />
     <ClCompile Include="..\Thirdparty\glm\includes\glm\detail\glm.cpp" />
@@ -35,6 +36,7 @@
     <ClInclude Include="..\Sources\Rendering\Camera.h" />
     <ClInclude Include="..\Sources\Rendering\Entity.h" />
     <ClInclude Include="..\Sources\Rendering\GBuffer.h" />
+    <ClInclude Include="..\Sources\Rendering\Light.h" />
     <ClInclude Include="..\Sources\Rendering\Mesh.h" />
     <ClInclude Include="..\Sources\Rendering\Model.h" />
     <ClInclude Include="..\Sources\Rendering\Renderer.h" />
