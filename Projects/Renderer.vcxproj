@@ -14,10 +14,12 @@
     <ClCompile Include="..\Sources\Core\Application.cpp" />
     <ClCompile Include="..\Sources\main.cpp" />
     <ClCompile Include="..\Sources\Rendering\Camera.cpp" />
+    <ClCompile Include="..\Sources\Rendering\Entity.cpp" />
     <ClCompile Include="..\Sources\Rendering\GBuffer.cpp" />
     <ClCompile Include="..\Sources\Rendering\Mesh.cpp" />
     <ClCompile Include="..\Sources\Rendering\Model.cpp" />
     <ClCompile Include="..\Sources\Rendering\Renderer.cpp" />
+    <ClCompile Include="..\Sources\Rendering\Scene.cpp" />
     <ClCompile Include="..\Sources\Rendering\Shader.cpp" />
     <ClCompile Include="..\Thirdparty\gl3w\includes\GL\gl3w.c" />
     <ClCompile Include="..\Thirdparty\glm\includes\glm\detail\glm.cpp" />
@@ -32,10 +34,13 @@
   <ItemGroup>
     <ClInclude Include="..\Sources\Core\Application.h" />
     <ClInclude Include="..\Sources\Rendering\Camera.h" />
+    <ClInclude Include="..\Sources\Rendering\Entity.h" />
     <ClInclude Include="..\Sources\Rendering\GBuffer.h" />
+    <ClInclude Include="..\Sources\Rendering\Light.h" />
     <ClInclude Include="..\Sources\Rendering\Mesh.h" />
     <ClInclude Include="..\Sources\Rendering\Model.h" />
     <ClInclude Include="..\Sources\Rendering\Renderer.h" />
+    <ClInclude Include="..\Sources\Rendering\Scene.h" />
     <ClInclude Include="..\Sources\Rendering\Shader.h" />
     <ClInclude Include="..\Thirdparty\assimp\ai_assert.h" />
     <ClInclude Include="..\Thirdparty\assimp\anim.h" />

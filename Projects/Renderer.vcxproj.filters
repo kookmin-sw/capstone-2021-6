@@ -99,6 +99,12 @@
     <ClCompile Include="..\Sources\Rendering\GBuffer.cpp">
       <Filter>Sources\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="..\Sources\Rendering\Entity.cpp">
+      <Filter>Sources\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Rendering\Scene.cpp">
+      <Filter>Sources\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Thirdparty\gl3w\includes\GL\gl3w.h">
@@ -702,6 +708,15 @@
       <Filter>Sources\Core</Filter>
     </ClInclude>
     <ClInclude Include="..\Sources\Rendering\GBuffer.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Rendering\Entity.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Rendering\Scene.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Rendering\Light.h">
       <Filter>Sources\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
