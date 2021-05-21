@@ -32,13 +32,6 @@
 *.ipch
 *.tlog
 *.idb
-Projects/.vs/Renderer/v16/.suo
-*.pdb
-*.log
-*.recipe
+
 Builds/
-*.ilk
-*.iobj
-*.ipdb
-*.db-shm
-*.db-wal
+Projects/.vs

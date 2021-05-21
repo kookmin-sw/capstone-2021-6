@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Sources\AABB.h" />
+    <ClInclude Include="..\Sources\Application.h" />
+    <ClInclude Include="..\Sources\Camera.h" />
+    <ClInclude Include="..\Sources\CameraPath.h" />
+    <ClInclude Include="..\Sources\Controller.h" />
+    <ClInclude Include="..\Sources\FBO.h" />
+    <ClInclude Include="..\Sources\Frustum.h" />
+    <ClInclude Include="..\Sources\GBuffer.h" />
+    <ClInclude Include="..\Sources\Light.h" />
+    <ClInclude Include="..\Sources\Material.h" />
+    <ClInclude Include="..\Sources\Mesh.h" />
+    <ClInclude Include="..\Sources\Model.h" />
+    <ClInclude Include="..\Sources\Object.h" />
+    <ClInclude Include="..\Sources\Plane.h" />
+    <ClInclude Include="..\Sources\Renderer.h" />
+    <ClInclude Include="..\Sources\Rendering.h" />
+    <ClInclude Include="..\Sources\CornellBoxScene.h" />
+    <ClInclude Include="..\Sources\Scene.h" />
+    <ClInclude Include="..\Sources\Shader.h" />
+    <ClInclude Include="..\Sources\ShadowMap.h" />
+    <ClInclude Include="..\Sources\SponzaScene.h" />
+    <ClInclude Include="..\Sources\TestApp.h" />
+    <ClInclude Include="..\Sources\Texture2D.h" />
+    <ClInclude Include="..\Sources\Texture3D.h" />
+    <ClInclude Include="..\Sources\Vertex.h" />
+    <ClInclude Include="..\Sources\Viewport.h" />
+    <ClInclude Include="..\Thirdparty\gl3w\includes\GL\gl3w.h" />
+    <ClInclude Include="..\Thirdparty\gl3w\includes\GL\glcorearb.h" />
+    <ClInclude Include="..\Thirdparty\gl3w\includes\KHR\khrplatform.h" />
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imconfig.h" />
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imgui.h" />
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imgui_internal.h" />
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imstb_truetype.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Sources\Application.cpp" />
+    <ClCompile Include="..\Sources\Camera.cpp" />
+    <ClCompile Include="..\Sources\GBuffer.cpp" />
+    <ClCompile Include="..\Sources\Light.cpp" />
+    <ClCompile Include="..\Sources\main.cpp" />
+    <ClCompile Include="..\Sources\Material.cpp" />
+    <ClCompile Include="..\Sources\Mesh.cpp" />
+    <ClCompile Include="..\Sources\Model.cpp" />
+    <ClCompile Include="..\Sources\Plane.cpp" />
+    <ClCompile Include="..\Sources\Renderer.cpp" />
+    <ClCompile Include="..\Sources\CornellBoxScene.cpp" />
+    <ClCompile Include="..\Sources\Scene.cpp" />
+    <ClCompile Include="..\Sources\Shader.cpp" />
+    <ClCompile Include="..\Sources\SponzaScene.cpp" />
+    <ClCompile Include="..\Sources\TestApp.cpp" />
+    <ClCompile Include="..\Sources\Texture2D.cpp" />
+    <ClCompile Include="..\Sources\Texture3D.cpp" />
+    <ClCompile Include="..\Sources\Viewport.cpp" />
+    <ClCompile Include="..\Thirdparty\gl3w\includes\GL\gl3w.c" />
+    <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui.cpp" />
+    <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui_widgets.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\GeometryPass.fs" />
+    <None Include="Resources\Shaders\GeometryPass.vs" />
+    <None Include="Resources\Shaders\LightingPass.fs" />
+    <None Include="Resources\Shaders\LightingPass.vs" />
+    <None Include="Resources\Shaders\PBR.fs" />
+    <None Include="Resources\Shaders\PBR.vs" />
+    <None Include="Resources\Shaders\Phong.fs" />
+    <None Include="Resources\Shaders\Phong.vs" />
+    <None Include="Resources\Shaders\RenderVoxel.frag" />
+    <None Include="Resources\Shaders\RenderVoxel.geom" />
+    <None Include="Resources\Shaders\RenderVoxel.vert" />
+    <None Include="Resources\Shaders\ShadowFS.frag" />
+    <None Include="Resources\Shaders\ShadowVS.vert" />
+    <None Include="Resources\Shaders\Texture3DReductionRGBA16FCS.comp" />
+    <None Include="Resources\Shaders\Texture3DReductionRGBA8CS.comp" />
+    <None Include="Resources\Shaders\VisualizeBoundingBox.frag" />
+    <None Include="Resources\Shaders\VisualizeBoundingBox.geom" />
+    <None Include="Resources\Shaders\VisualizeBoundingBox.vert" />
+    <None Include="Resources\Shaders\VisualizeDiffuseConeDirection.frag" />
+    <None Include="Resources\Shaders\VisualizeDiffuseConeDirection.geom" />
+    <None Include="Resources\Shaders\VisualizeDiffuseConeDirection.vert" />
+    <None Include="Resources\Shaders\VoxelConeTracingFS.frag" />
+    <None Include="Resources\Shaders\VoxelConeTracingVS.vert" />
+    <None Include="Resources\Shaders\VoxelizationFS.glsl" />
+    <None Include="Resources\Shaders\VoxelizationGS.glsl" />
+    <None Include="Resources\Shaders\VoxelizationR32UIFS.frag" />
+    <None Include="Resources\Shaders\VoxelizationVS.glsl" />
+    <None Include="Resources\Shaders\WorldPosFS.glsl" />
+    <None Include="Resources\Shaders\WorldPosVS.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Thirdparty\imgui\includes\imgui\LICENSE.txt" />
+    <Text Include="Resources\Shaders\DecodeR32UIToRGBA8CS.comp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{C961005B-B85C-4E36-82F4-B5D65F4CE351}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>openglpbr</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\Builds\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\Builds\Intermediate\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\Builds\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\Builds\Intermediate\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Thirdparty\gl3w\includes;$(SolutionDir)..\Thirdparty\tinygltf\includes;$(SolutionDir)..\Thirdparty\imgui\includes;$(SolutionDir)..\Thirdparty\glm\includes;$(SolutionDir)..\Thirdparty\glfw\includes;$(SolutionDir)..\gl3w\includes;$(SolutionDir)..\Thirdparty\assimp\includes;$(SolutionDir)..\Thirdparty\FreeImage\includes;$(SolutionDir)..\Thirdparty\stb\includes</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>FreeImage.lib;assimp_d.lib;glfw3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Thirdparty\glfw\libs;$(SolutionDir)..\Thirdparty\assimp\libs;$(SolutionDir)..\Thirdparty\FreeImage\libs</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "..\ThirdParty\assimp\dlls\Debug" "$(SolutionDir)..\Builds\$(Platform)\$(Configuration)\";
+copy "..\ThirdParty\FreeImage\dlls\Debug" "$(SolutionDir)..\Builds\$(Platform)\$(Configuration)\";</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Thirdparty\gl3w\includes;$(SolutionDir)..\Thirdparty\tinygltf\includes;$(SolutionDir)..\Thirdparty\imgui\includes;$(SolutionDir)..\Thirdparty\glm\includes;$(SolutionDir)..\Thirdparty\glfw\includes;$(SolutionDir)..\gl3w\includes;$(SolutionDir)..\Thirdparty\assimp\includes;$(SolutionDir)..\Thirdparty\FreeImage\includes;$(SolutionDir)..\Thirdparty\stb\includes</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>FreeImage.lib;assimp.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Thirdparty\glfw\libs;$(SolutionDir)..\Thirdparty\assimp\libs;$(SolutionDir)..\Thirdparty\FreeImage\libs</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "..\ThirdParty\assimp\dlls\Release" "$(SolutionDir)..\Builds\$(Platform)\$(Configuration)\";
+copy "..\ThirdParty\FreeImage\dlls\Release" "$(SolutionDir)..\Builds\$(Platform)\$(Configuration)\";</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

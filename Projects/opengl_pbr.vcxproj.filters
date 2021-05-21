@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Thirdparty">
+      <UniqueIdentifier>{fcc85d9d-5eb8-442c-8fe8-b1541a822640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thirdparty\gl3w">
+      <UniqueIdentifier>{01ac3f8f-cc7a-4d8e-9a22-f6114565fda5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{c7d95f49-1829-471f-adc9-b1e1d706d8d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\R32UI">
+      <UniqueIdentifier>{52c07aba-6f2c-481e-b8bb-73712f7ab127}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Rendering">
+      <UniqueIdentifier>{efa6b856-212b-45d4-9ce3-ee2c008733ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Rendering\Scenes">
+      <UniqueIdentifier>{4adc3196-6679-4583-aaf5-f2c465914303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Rendering\Textures">
+      <UniqueIdentifier>{24e06fa7-7e77-4e83-8188-3d2c6a3bd3cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Rendering\Buffers">
+      <UniqueIdentifier>{cd2a2ca6-b21e-4d6c-b49c-01d082bec3b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Rendering\Objects">
+      <UniqueIdentifier>{a300f0ac-7e11-46fe-bf9b-f673ebc04753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Rendering\Scenes\Predefined">
+      <UniqueIdentifier>{17e95d6a-5783-449e-8784-83f24fb8353b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Framework">
+      <UniqueIdentifier>{bd6b7f9d-c853-4c5a-ac5a-ac580f3e4e0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Application">
+      <UniqueIdentifier>{575f8f64-6088-41ce-be1e-e4fc06784dba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Framework\Primitives">
+      <UniqueIdentifier>{b81d25ed-2e38-4ea7-a4df-e45915728fb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Visualization">
+      <UniqueIdentifier>{4e265591-d79d-4608-89b7-1d7001197509}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thirdparty\imgui">
+      <UniqueIdentifier>{e15b8b53-8a10-4852-aeae-cc235964da07}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Thirdparty\gl3w\includes\GL\glcorearb.h">
+      <Filter>Thirdparty\gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Thirdparty\gl3w\includes\GL\gl3w.h">
+      <Filter>Thirdparty\gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Thirdparty\gl3w\includes\KHR\khrplatform.h">
+      <Filter>Thirdparty\gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Renderer.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Rendering.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Viewport.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Scene.h">
+      <Filter>Sources\Rendering\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\ShadowMap.h">
+      <Filter>Sources\Rendering\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Texture2D.h">
+      <Filter>Sources\Rendering\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Texture3D.h">
+      <Filter>Sources\Rendering\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\FBO.h">
+      <Filter>Sources\Rendering\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\GBuffer.h">
+      <Filter>Sources\Rendering\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Light.h">
+      <Filter>Sources\Rendering\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Camera.h">
+      <Filter>Sources\Rendering\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Material.h">
+      <Filter>Sources\Rendering\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Mesh.h">
+      <Filter>Sources\Rendering\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\CameraPath.h">
+      <Filter>Sources\Rendering\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\CornellBoxScene.h">
+      <Filter>Sources\Rendering\Scenes\Predefined</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\SponzaScene.h">
+      <Filter>Sources\Rendering\Scenes\Predefined</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Controller.h">
+      <Filter>Sources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Model.h">
+      <Filter>Sources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Object.h">
+      <Filter>Sources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\TestApp.h">
+      <Filter>Sources\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Application.h">
+      <Filter>Sources\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Vertex.h">
+      <Filter>Sources\Rendering\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Shader.h">
+      <Filter>Sources\Rendering\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Plane.h">
+      <Filter>Sources\Framework\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\AABB.h">
+      <Filter>Sources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\Frustum.h">
+      <Filter>Sources\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imconfig.h">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imgui.h">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imgui_impl_glfw.h">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imgui_impl_opengl3.h">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imgui_internal.h">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imstb_rectpack.h">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imstb_textedit.h">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Thirdparty\imgui\includes\imgui\imstb_truetype.h">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Thirdparty\gl3w\includes\GL\gl3w.c">
+      <Filter>Thirdparty\gl3w</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Renderer.cpp">
+      <Filter>Sources\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Viewport.cpp">
+      <Filter>Sources\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Scene.cpp">
+      <Filter>Sources\Rendering\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Texture2D.cpp">
+      <Filter>Sources\Rendering\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Texture3D.cpp">
+      <Filter>Sources\Rendering\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\GBuffer.cpp">
+      <Filter>Sources\Rendering\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Camera.cpp">
+      <Filter>Sources\Rendering\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Light.cpp">
+      <Filter>Sources\Rendering\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Material.cpp">
+      <Filter>Sources\Rendering\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Mesh.cpp">
+      <Filter>Sources\Rendering\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\CornellBoxScene.cpp">
+      <Filter>Sources\Rendering\Scenes\Predefined</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\SponzaScene.cpp">
+      <Filter>Sources\Rendering\Scenes\Predefined</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Model.cpp">
+      <Filter>Sources\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Application.cpp">
+      <Filter>Sources\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\TestApp.cpp">
+      <Filter>Sources\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Shader.cpp">
+      <Filter>Sources\Rendering\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\main.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\Plane.cpp">
+      <Filter>Sources\Framework\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui.cpp">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui_demo.cpp">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui_draw.cpp">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui_impl_glfw.cpp">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui_impl_opengl3.cpp">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Thirdparty\imgui\includes\imgui\imgui_widgets.cpp">
+      <Filter>Thirdparty\imgui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\GeometryPass.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\GeometryPass.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\LightingPass.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\LightingPass.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\PBR.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\PBR.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\Phong.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\Phong.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\VoxelizationVS.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\VoxelizationGS.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\VoxelizationFS.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\VoxelConeTracingVS.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\VoxelConeTracingFS.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\WorldPosVS.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\WorldPosFS.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\ShadowVS.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\ShadowFS.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\Texture3DReductionRGBA8CS.comp">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\Texture3DReductionRGBA16FCS.comp">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\VoxelizationR32UIFS.frag">
+      <Filter>Shaders\R32UI</Filter>
+    </None>
+    <None Include="Resources\Shaders\RenderVoxel.vert">
+      <Filter>Shaders\Visualization</Filter>
+    </None>
+    <None Include="Resources\Shaders\RenderVoxel.frag">
+      <Filter>Shaders\Visualization</Filter>
+    </None>
+    <None Include="Resources\Shaders\RenderVoxel.geom">
+      <Filter>Shaders\Visualization</Filter>
+    </None>
+    <None Include="Resources\Shaders\VisualizeDiffuseConeDirection.vert">
+      <Filter>Shaders\Visualization</Filter>
+    </None>
+    <None Include="Resources\Shaders\VisualizeDiffuseConeDirection.geom">
+      <Filter>Shaders\Visualization</Filter>
+    </None>
+    <None Include="Resources\Shaders\VisualizeDiffuseConeDirection.frag">
+      <Filter>Shaders\Visualization</Filter>
+    </None>
+    <None Include="Resources\Shaders\VisualizeBoundingBox.vert">
+      <Filter>Shaders\Visualization</Filter>
+    </None>
+    <None Include="Resources\Shaders\VisualizeBoundingBox.geom">
+      <Filter>Shaders\Visualization</Filter>
+    </None>
+    <None Include="Resources\Shaders\VisualizeBoundingBox.frag">
+      <Filter>Shaders\Visualization</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\Shaders\DecodeR32UIToRGBA8CS.comp">
+      <Filter>Shaders\R32UI</Filter>
+    </Text>
+    <Text Include="..\Thirdparty\imgui\includes\imgui\LICENSE.txt">
+      <Filter>Thirdparty\imgui</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
