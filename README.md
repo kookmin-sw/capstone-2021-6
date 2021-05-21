@@ -49,7 +49,7 @@ Github : [@SeolYang](https://github.com/SeolYang)
 ### 4. 사용법
 
 ```
-UI 켜기 / 끄기 : 
+UI 켜기 / 끄기 : U
 Camera Movement : W A S D
 Light Movement : UpArrow DownArrow LeftArrow RightArrow
 Enable CamPath : C
