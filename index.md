@@ -46,7 +46,17 @@ Github : [@SeolYang](https://github.com/SeolYang)
 ```
 ### 4. 사용법
 
+```
+UI 켜기 / 끄기 : U
+Camera Movement : W A S D
+Light Movement : UpArrow DownArrow LeftArrow RightArrow
+Enable CamPath : C
+Enable Light Roation : L
 
+Change RenderMode : LeftBracket RightBracket
+Change Scene to Sponza : F5
+Change Scene to CornellBox : F6
+```
 
 ### 5. 개발
 
