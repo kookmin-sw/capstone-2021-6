@@ -2,7 +2,7 @@
 
 **팀페이지 주소** -> https://kookmin-sw.github.io/capstone-2021-6
 
-### 1. 프로잭트 소개
+### 1. 프로젝트 소개
 
 
 #### Voxel Cone Tracing을 활용한 렌더러
@@ -64,11 +64,12 @@ Change Scene to CornellBox : F6
 
 협업 규칙
 
+```
 Code Convention
 
 - 매크로 : Uppercase Snake
 - 함수명, 클래스, Enumerator, Enumerator Element, Constant : Pascal
 - 멤버변수 : Hungarian
 - 로컬변수 : Camel
-
+```
 
