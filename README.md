@@ -8,14 +8,14 @@
 #### Voxel Cone Tracing을 활용한 렌더러
 
 
-특정 하드웨어 유닛(CUDA Core, Tensor Core, RT Core)을 사용하지 않고도 비슷한 효과를 낼 수 있는 렌더러 개발
+특정 하드웨어 유닛(CUDA Core, Tensor Core, RT Core)을 사용하지 않고도 비슷한 효과를 낼 수 있는 렌더러
 
 
 사실적인 렌더링을 위해서는 Global Illumination, Shadows, Ambient Occlusion, Reflection, Caustics를 이용하여
 렌더링을 해야한다.
 
 
-우리는 그 중 Global Illumination효과를 내기 위하여 Voxel Cone Tracing이라는 기술을 공부하고 우리의 렌더러에 적용할 것이다.
+우리는 그 중 Global Illumination효과를 내기 위하여 Voxel Cone Tracing이라는 기술을 공부하고 우리의 렌더러에 적용하였다.
 
 ### 2. 소개 영상
 
