@@ -19,7 +19,7 @@
 
 ### 2. 소개 영상
 
-
+[![Team6 Lit 소개영상](http://img.youtube.com/vi/NRaRvLj9sr8/0.jpg)](https://youtu.be/NRaRvLj9sr8?t=0s) 
 
 ### 3. 팀 소개
 <img width="200" alt="곽상열" src="https://user-images.githubusercontent.com/59731956/113509034-5f32ee00-958e-11eb-9a82-ede3401554eb.jpg">
