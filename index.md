@@ -1,4 +1,5 @@
 # Lit
+**깃허브 주소** -> https://github.com/kookmin-sw/capstone-2021-6
 
 ## 목차
 1. ### 프로젝트 소개
