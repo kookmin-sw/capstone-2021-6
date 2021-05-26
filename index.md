@@ -23,27 +23,34 @@
 <img width="200" alt="곽상열" src="https://user-images.githubusercontent.com/59731956/113509034-5f32ee00-958e-11eb-9a82-ede3401554eb.jpg">
 
 
-```
+
 곽상열
 
 Student ID : 20151769
+
 E-Mail : sangjjang96@kookmin.ac.kr
+
 Role : 팀장, 프레임워크 개발
+
 Github : [@sangjjang96](https://github.com/sangjjang96)
-```
+
 
 
 <img width="200" alt="양교원" src="https://user-images.githubusercontent.com/59731956/113509058-7a9df900-958e-11eb-8fe8-fa0a8f61b262.png">
 
 
-```
+
 양교원
 
 Student ID : 20171647
+
 E-Mail : yangkyowon@kookmin.ac.kr
+
 Role : 팀원, 알고리즘 연구 및 개발
+
 Github : [@SeolYang](https://github.com/SeolYang)
-```
+
+
 ### 4. 사용법
 
 ```
